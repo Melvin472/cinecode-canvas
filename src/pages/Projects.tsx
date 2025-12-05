@@ -6,117 +6,67 @@ import Footer from "@/components/Footer";
 
 const projects = [
   {
-    title: "CinéTrack",
+    title: "Robot Autonome",
     description:
-      "Application de suivi de films et séries avec recommandations personnalisées basées sur vos goûts cinématographiques.",
-    image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&q=80",
-    tags: ["React", "TypeScript", "API TMDB", "Tailwind"],
+      "Conception et programmation d'un robot autonome avec asservissement PID. Visualisation des déplacements en temps réel et optimisation des trajets.",
+    image: "/image/robot.png",
+    tags: ["Programmation", "PID", "Robotique", "Python"],
     liveUrl: "#",
     githubUrl: "#",
   },
   {
-    title: "SceneBuilder",
+    title: "Stage Prolexia - Robot Oscar",
     description:
-      "Outil de création de storyboards interactifs pour réalisateurs et créateurs de contenu vidéo.",
-    image: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=800&q=80",
-    tags: ["React", "Canvas API", "Drag & Drop"],
+      "Tests et validation physiques pour la gestion du robot Oscar. Optimisation de l'asservissement PID, conception de carte électronique KICAD pour géolocalisation avec RTK GNSS et intégration des capteurs.",
+    image: "/image/prolexia.png",
+    tags: ["Tests", "Robotique", "KICAD", "RTK GNSS", "Asservissement"],
     liveUrl: "#",
     githubUrl: "#",
   },
   {
-    title: "FilmQuotes",
+    title: "Beatmoji",
     description:
-      "Collection de citations de films cultes avec animation de machine à écrire et partage social.",
-    image: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&q=80",
-    tags: ["Next.js", "Framer Motion", "Supabase"],
+      "Application mobile permettant de partager de la musique de manière quotidienne en rapport avec un emoji. Plateforme sociale musicale innovante.",
+    image: "/image/Beatmoji.png",
+    tags: ["React", "JavaScript", "Mobile", "Musique"],
     liveUrl: "#",
     githubUrl: "#",
   },
   {
-    title: "Director's Cut",
+    title: "Carte Capteur Bluetooth",
     description:
-      "Portfolio template pour réalisateurs avec galerie de projets et lecteur vidéo intégré.",
-    image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&q=80",
-    tags: ["React", "Video.js", "GSAP"],
+      "Projet universitaire : carte de récupération de données de température via Bluetooth avec application mobile. Transmission et visualisation des données en temps réel.",
+    image: "/image/capteur.png",
+    tags: ["Bluetooth", "Arduino", "React Native", "Capteur"],
     liveUrl: "#",
     githubUrl: "#",
   },
   {
-    title: "MoviePalette",
+    title: "Jeu Vidéo - Unreal Engine",
     description:
-      "Extraction et analyse des palettes de couleurs des affiches de films pour inspiration design.",
-    image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=800&q=80",
-    tags: ["React", "Color Thief", "Tailwind"],
+      "Développement d'un jeu vidéo immersif sous Unreal Engine. Conception de gameplay, mécaniques de combat et environnement 3D détaillé.",
+    image: "/image/unreal.png",
+    tags: ["Unreal Engine", "C++", "3D", "Game Design"],
     liveUrl: "#",
-  },
-  {
-    title: "SoundtrackFinder",
-    description:
-      "Découvrez les bandes originales de vos films préférés avec intégration Spotify.",
-    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80",
-    tags: ["React", "Spotify API", "TypeScript"],
     githubUrl: "#",
   },
 ];
 
 const Projects = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/5">
       <Navigation />
-
-      {/* Hero */}
-      <section className="pt-32 pb-16 relative">
-        <FilmStrip className="absolute top-24 left-0 right-0 opacity-10" />
-        <div className="container mx-auto px-6">
-          <SectionTitle
-            title="Projets"
-            subtitle="Ma filmographie digitale"
-          />
-          <p className="text-center text-muted-foreground max-w-2xl mx-auto">
-            Chaque projet est une histoire. Voici les scènes que j'ai créées, 
-            alliant ma passion pour le cinéma et mon expertise en développement web.
-          </p>
-        </div>
-      </section>
-
-      {/* Projects Grid */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="pt-24">
+        <SectionTitle title="Projets" />
+        <div className="container mx-auto px-4 py-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((project, index) => (
-              <div
-                key={project.title}
-                className="animate-fade-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <ProjectCard {...project} />
-              </div>
+              <ProjectCard key={index} {...project} />
             ))}
           </div>
         </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20">
-        <div className="container mx-auto px-6">
-          <div className="max-w-2xl mx-auto text-center p-8 rounded-lg bg-card border border-border">
-            <h3 className="font-display text-2xl font-semibold text-foreground mb-4">
-              Un projet en tête ?
-            </h3>
-            <p className="text-muted-foreground mb-6">
-              Je suis toujours à la recherche de nouvelles collaborations créatives.
-              Discutons de votre prochaine production !
-            </p>
-            <a
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-mono uppercase tracking-wider hover:bg-primary/90 transition-colors"
-            >
-              Action !
-            </a>
-          </div>
-        </div>
-      </section>
-
+        <FilmStrip />
+      </div>
       <Footer />
     </div>
   );

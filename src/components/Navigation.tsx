@@ -7,6 +7,7 @@ const navItems = [
   { path: "/", label: "Accueil" },
   { path: "/skills", label: "Compétences" },
   { path: "/projects", label: "Projets" },
+  { path: "/interests", label: "Centre d'intérêt" },
   { path: "/contact", label: "Contact" },
 ];
 
@@ -63,7 +64,7 @@ const Navigation = () => {
       <div
         className={cn(
           "md:hidden absolute top-16 left-0 right-0 bg-background/95 backdrop-blur-md border-b border-border transition-all duration-300 overflow-hidden",
-          isOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
         )}
       >
         <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
