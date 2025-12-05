@@ -1,11 +1,11 @@
 import {
   Code,
-  Palette,
-  Layout,
-  Database,
-  Film,
-  Video,
-  Camera,
+  Cpu,
+  Smartphone,
+  Gamepad2,
+  Bluetooth,
+  CircuitBoard,
+  Cog,
   Sparkles,
   Lightbulb,
   Users,
@@ -16,57 +16,51 @@ import SkillCard from "@/components/SkillCard";
 import FilmStrip from "@/components/FilmStrip";
 import Footer from "@/components/Footer";
 
-const frontendSkills = [
+const programmingSkills = [
   {
     icon: Code,
-    title: "React & TypeScript",
-    description: "Construction d'applications modernes et typées",
+    title: "React & JavaScript",
+    description: "Développement d'applications mobiles et web (Beatmoji)",
+    level: 85,
+  },
+  {
+    icon: Cpu,
+    title: "Python",
+    description: "Programmation robotique et asservissement PID",
     level: 90,
   },
   {
-    icon: Palette,
-    title: "CSS & Tailwind",
-    description: "Design responsive et animations fluides",
-    level: 85,
-  },
-  {
-    icon: Layout,
-    title: "UI/UX Design",
-    description: "Interfaces intuitives et expériences mémorables",
-    level: 80,
-  },
-  {
-    icon: Database,
-    title: "API & State Management",
-    description: "Gestion des données et communication serveur",
+    icon: Gamepad2,
+    title: "C++ & Unreal Engine",
+    description: "Développement de jeux vidéo et environnements 3D",
     level: 75,
+  },
+  {
+    icon: Smartphone,
+    title: "React Native",
+    description: "Applications mobiles iOS/Android",
+    level: 80,
   },
 ];
 
-const cinemaSkills = [
+const electronicsSkills = [
   {
-    icon: Film,
-    title: "Culture Cinématographique",
-    description: "Connaissance approfondie du 7ème art",
-    level: 95,
-  },
-  {
-    icon: Video,
-    title: "Montage Vidéo",
-    description: "Notions de montage et storytelling visuel",
-    level: 70,
-  },
-  {
-    icon: Camera,
-    title: "Composition Visuelle",
-    description: "Sens du cadrage et de l'esthétique",
+    icon: CircuitBoard,
+    title: "KICAD",
+    description: "Conception de cartes électroniques (RTK GNSS)",
     level: 85,
   },
   {
-    icon: Sparkles,
-    title: "Direction Artistique",
-    description: "Vision créative et cohérence visuelle",
+    icon: Bluetooth,
+    title: "Bluetooth & Capteurs",
+    description: "Communication sans fil et acquisition de données",
     level: 80,
+  },
+  {
+    icon: Cog,
+    title: "Robotique & PID",
+    description: "Asservissement et contrôle de robots autonomes",
+    level: 90,
   },
 ];
 
@@ -101,15 +95,15 @@ const Skills = () => {
         </div>
       </section>
 
-      {/* Frontend Skills */}
+      {/* Programming Skills */}
       <section className="py-16">
         <div className="container mx-auto px-6">
           <h3 className="font-display text-2xl font-semibold text-foreground mb-8 flex items-center gap-3">
             <Code className="w-6 h-6 text-code-green" />
-            Développement Front-End
+            Programmation
           </h3>
           <div className="grid md:grid-cols-2 gap-6">
-            {frontendSkills.map((skill, index) => (
+            {programmingSkills.map((skill, index) => (
               <div
                 key={skill.title}
                 className="animate-fade-up"
@@ -122,15 +116,15 @@ const Skills = () => {
         </div>
       </section>
 
-      {/* Cinema Skills */}
+      {/* Electronics Skills */}
       <section className="py-16 bg-card/30">
         <div className="container mx-auto px-6">
           <h3 className="font-display text-2xl font-semibold text-foreground mb-8 flex items-center gap-3">
-            <Film className="w-6 h-6 text-primary" />
-            Cinéma & Audiovisuel
+            <CircuitBoard className="w-6 h-6 text-primary" />
+            Électronique & Robotique
           </h3>
           <div className="grid md:grid-cols-2 gap-6">
-            {cinemaSkills.map((skill, index) => (
+            {electronicsSkills.map((skill, index) => (
               <div
                 key={skill.title}
                 className="animate-fade-up"
