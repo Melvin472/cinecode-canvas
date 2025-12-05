@@ -11,8 +11,7 @@ const projects = [
       "Conception et programmation d'un robot autonome avec asservissement PID. Visualisation des déplacements en temps réel et optimisation des trajets.",
     image: "/image/robot.png",
     tags: ["Programmation", "PID", "Robotique", "Python"],
-    liveUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Melvin472/IUT_Lacote_Melvin",
   },
   {
     title: "Stage Prolexia - Robot Oscar",
@@ -20,8 +19,6 @@ const projects = [
       "Tests et validation physiques pour la gestion du robot Oscar. Optimisation de l'asservissement PID, conception de carte électronique KICAD pour géolocalisation avec RTK GNSS et intégration des capteurs.",
     image: "/image/prolexia.png",
     tags: ["Tests", "Robotique", "KICAD", "RTK GNSS", "Asservissement"],
-    liveUrl: "#",
-    githubUrl: "#",
   },
   {
     title: "Beatmoji",
@@ -29,17 +26,15 @@ const projects = [
       "Application mobile permettant de partager de la musique de manière quotidienne en rapport avec un emoji. Plateforme sociale musicale innovante.",
     image: "/image/Beatmoji.png",
     tags: ["React", "JavaScript", "Mobile", "Musique"],
-    liveUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Melvin472/BeatmojiApp",
   },
   {
     title: "Carte Capteur Bluetooth",
     description:
       "Projet universitaire : carte de récupération de données de température via Bluetooth avec application mobile. Transmission et visualisation des données en temps réel.",
-    image: "/image/capteur.png",
+    image: "/image/nrfconnect.png",
     tags: ["Bluetooth", "Arduino", "React Native", "Capteur"],
-    liveUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Melvin472/nrf-ios-beacon",
   },
   {
     title: "Jeu Vidéo - Unreal Engine",
@@ -47,8 +42,7 @@ const projects = [
       "Développement d'un jeu vidéo immersif sous Unreal Engine. Conception de gameplay, mécaniques de combat et environnement 3D détaillé.",
     image: "/image/unreal.png",
     tags: ["Unreal Engine", "C++", "3D", "Game Design"],
-    liveUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Melvin472/projet-unreal",
   },
 ];
 

@@ -10,9 +10,8 @@ import FilmStrip from "@/components/FilmStrip";
 import Footer from "@/components/Footer";
 
 const socialLinks = [
-  { icon: Github, label: "GitHub", href: "#", username: "@username" },
-  { icon: Linkedin, label: "LinkedIn", href: "#", username: "/in/username" },
-  { icon: Twitter, label: "Twitter", href: "#", username: "@username" },
+  { icon: Github, label: "GitHub", href: "https://github.com/Melvin472", username: "@Melvin472" },
+  { icon: Linkedin, label: "LinkedIn", href: "#", username: "/in/melvin-lacote" },
 ];
 
 const Contact = () => {
@@ -78,7 +77,7 @@ const Contact = () => {
                       <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
                         Email
                       </p>
-                      <p className="text-foreground">contact@example.com</p>
+                      <p className="text-foreground">melvin.lacote@gmail.com</p>
                     </div>
                   </div>
 
@@ -90,7 +89,7 @@ const Contact = () => {
                       <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
                         Localisation
                       </p>
-                      <p className="text-foreground">Paris, France</p>
+                      <p className="text-foreground">Toulon, France</p>
                     </div>
                   </div>
                 </div>
