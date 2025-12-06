@@ -9,12 +9,14 @@ import Projects from "./pages/Projects";
 import Interests from "./pages/Interests";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
+import CurtainAnimation from "./components/CurtainAnimation";
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
+      <CurtainAnimation />
       <Toaster />
       <Sonner />
       <BrowserRouter>
