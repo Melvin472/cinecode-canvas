@@ -24,7 +24,7 @@ const ProjectCard = ({
   return (
       <div
         className={cn(
-          "group relative bg-white rounded-lg overflow-hidden border border-border transition-all duration-500",
+          "group relative bg-black rounded-lg overflow-hidden border border-border transition-all duration-500",
           "hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10",
         className
         )}
