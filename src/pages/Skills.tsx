@@ -9,6 +9,10 @@ import {
   Sparkles,
   Lightbulb,
   Users,
+  Target,
+  Clock,
+  Brain,
+  MessageCircle,
 } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import SectionTitle from "@/components/SectionTitle";
@@ -73,8 +77,32 @@ const softSkills = [
   },
   {
     icon: Users,
-    title: "Collaboration",
-    description: "Travail d'équipe et communication efficace",
+    title: "Travail d'équipe",
+    description: "Collaboration efficace et partage des connaissances",
+    level: 85,
+  },
+  {
+    icon: Target,
+    title: "Résolution de problèmes",
+    description: "Analyse et résolution méthodique des défis techniques",
+    level: 88,
+  },
+  {
+    icon: Clock,
+    title: "Gestion du temps",
+    description: "Organisation et respect des délais de projet",
+    level: 82,
+  },
+  {
+    icon: Brain,
+    title: "Adaptabilité",
+    description: "Apprentissage rapide de nouvelles technologies",
+    level: 90,
+  },
+  {
+    icon: MessageCircle,
+    title: "Communication",
+    description: "Expression claire des idées techniques et non-techniques",
     level: 85,
   },
 ];
@@ -144,7 +172,7 @@ const Skills = () => {
             <Sparkles className="w-6 h-6 text-cinema-red" />
             Soft Skills
           </h3>
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {softSkills.map((skill, index) => (
               <div
                 key={skill.title}
