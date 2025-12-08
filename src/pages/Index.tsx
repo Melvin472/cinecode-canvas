@@ -131,10 +131,9 @@ const Index = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 max-w-4xl mx-auto">
+          <div className="grid grid-cols-3 gap-8 mt-16 max-w-3xl mx-auto">
             {[
-              { value: "3+", label: "Années d'expérience" },
-              { value: "50+", label: "Projets réalisés" },
+              { value: "10", label: "Projets réalisés" },
               { value: "100+", label: "Films vus" },
               { value: "∞", label: "Passion" },
             ].map((stat, index) => (
