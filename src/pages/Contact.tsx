@@ -11,7 +11,8 @@ import Footer from "@/components/Footer";
 
 const socialLinks = [
   { icon: Github, label: "GitHub", href: "https://github.com/Melvin472", username: "@Melvin472" },
-  { icon: Linkedin, label: "LinkedIn", href: "#", username: "/in/melvin-lacote" },
+  { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/melvin-lacote/", username: "/in/melvin-lacote" },
+  { icon: Film, label: "Letterboxd", href: "https://letterboxd.com/melvinlacote/", username: "@melvinlacote" },
 ];
 
 const Contact = () => {
