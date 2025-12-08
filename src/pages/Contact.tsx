@@ -9,17 +9,18 @@ import SectionTitle from "@/components/SectionTitle";
 import FilmStrip from "@/components/FilmStrip";
 import Footer from "@/components/Footer";
 
-// Custom Letterboxd icon component
+// Official Letterboxd icon component (three dots)
 const LetterboxdIcon = ({ className }: { className?: string }) => (
   <svg 
     viewBox="0 0 500 500" 
     className={className}
-    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
   >
-    <path d="M250 500C111.929 500 0 388.071 0 250S111.929 0 250 0s250 111.929 250 250-111.929 250-250 250z"/>
-    <path fill="#00E054" d="M250 139.5c-33.084 0-63.623 10.975-88.125 29.479l88.125 81.021 88.125-81.021C313.623 150.475 283.084 139.5 250 139.5z"/>
-    <path fill="#40BCF4" d="M161.875 168.979C133.979 193.479 116.5 230.021 116.5 271c0 61.021 43.271 111.896 100.875 123.521L161.875 168.979z"/>
-    <path fill="#FF8000" d="M338.125 168.979L282.625 394.521C340.229 382.896 383.5 332.021 383.5 271c0-40.979-17.479-77.521-45.375-102.021z"/>
+    <circle cx="129" cy="250" r="70" fill="#00E054"/>
+    <circle cx="250" cy="250" r="70" fill="#40BCF4"/>
+    <circle cx="371" cy="250" r="70" fill="#FF8000"/>
+    <path d="M182.5 183.5a70 70 0 0 0 0 133" fill="#00D449"/>
+    <path d="M317.5 183.5a70 70 0 0 1 0 133" fill="#FC7B03"/>
   </svg>
 );
 

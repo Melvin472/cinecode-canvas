@@ -24,9 +24,11 @@ const ProjectCard = ({
   return (
       <div
         className={cn(
-          "group relative bg-black rounded-lg overflow-hidden border border-border transition-all duration-500",
-          "hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10",
-        className
+          "group relative bg-black rounded-lg overflow-hidden border border-border",
+          "transition-all duration-500 ease-out",
+          "hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/20",
+          "hover:-translate-y-2 hover:scale-[1.02]",
+          className
         )}
       >
       {/* Image with overlay */}
@@ -34,13 +36,13 @@ const ProjectCard = ({
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-115"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
         
         {/* Play button overlay */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="p-4 rounded-full bg-primary/90 text-primary-foreground transform scale-90 group-hover:scale-100 transition-transform">
+        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+          <div className="p-4 rounded-full bg-primary/90 text-primary-foreground transform scale-50 group-hover:scale-100 transition-all duration-500 ease-out shadow-lg shadow-primary/30">
             <Play className="w-8 h-8" fill="currentColor" />
           </div>
         </div>
