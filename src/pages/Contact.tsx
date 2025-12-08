@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, MapPin, Github, Linkedin, Twitter, Send, Film } from "lucide-react";
+import { Mail, MapPin, Github, Linkedin, Send, FileDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,10 +9,24 @@ import SectionTitle from "@/components/SectionTitle";
 import FilmStrip from "@/components/FilmStrip";
 import Footer from "@/components/Footer";
 
+// Custom Letterboxd icon component
+const LetterboxdIcon = ({ className }: { className?: string }) => (
+  <svg 
+    viewBox="0 0 500 500" 
+    className={className}
+    fill="currentColor"
+  >
+    <path d="M250 500C111.929 500 0 388.071 0 250S111.929 0 250 0s250 111.929 250 250-111.929 250-250 250z"/>
+    <path fill="#00E054" d="M250 139.5c-33.084 0-63.623 10.975-88.125 29.479l88.125 81.021 88.125-81.021C313.623 150.475 283.084 139.5 250 139.5z"/>
+    <path fill="#40BCF4" d="M161.875 168.979C133.979 193.479 116.5 230.021 116.5 271c0 61.021 43.271 111.896 100.875 123.521L161.875 168.979z"/>
+    <path fill="#FF8000" d="M338.125 168.979L282.625 394.521C340.229 382.896 383.5 332.021 383.5 271c0-40.979-17.479-77.521-45.375-102.021z"/>
+  </svg>
+);
+
 const socialLinks = [
   { icon: Github, label: "GitHub", href: "https://github.com/Melvin472", username: "@Melvin472" },
   { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/melvin-lacote/", username: "/in/melvin-lacote" },
-  { icon: Film, label: "Letterboxd", href: "https://letterboxd.com/melvinlacote/", username: "@melvinlacote" },
+  { icon: LetterboxdIcon, label: "Letterboxd", href: "https://letterboxd.com/melvinlacote/", username: "@melvinlacote" },
 ];
 
 const Contact = () => {
@@ -117,9 +131,31 @@ const Contact = () => {
                 </div>
               </div>
 
+              {/* CV Download */}
+              <div>
+                <h3 className="font-display text-xl font-semibold text-foreground mb-4">
+                  Mon CV
+                </h3>
+                <a
+                  href="/documents/Melvin_Lacote_CV.pdf"
+                  download="Melvin_Lacote_CV.pdf"
+                  className="flex items-center gap-3 p-4 rounded-lg bg-card border border-border hover:border-primary transition-colors group"
+                >
+                  <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+                    <FileDown className="w-5 h-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-mono text-sm text-foreground group-hover:text-primary transition-colors">
+                      Télécharger mon CV
+                    </p>
+                    <p className="text-xs text-muted-foreground">PDF • Melvin Lacote</p>
+                  </div>
+                </a>
+              </div>
+
               {/* Film quote */}
               <blockquote className="p-6 rounded-lg bg-card border border-border">
-                <Film className="w-6 h-6 text-primary mb-3" />
+                <LetterboxdIcon className="w-6 h-6 text-primary mb-3" />
                 <p className="font-display text-lg italic text-foreground mb-2">
                   "This is the beginning of a beautiful friendship."
                 </p>
