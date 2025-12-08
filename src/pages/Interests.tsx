@@ -6,14 +6,14 @@ import Footer from "@/components/Footer";
 const interests = [
   {
     title: "Sport",
-    description: "Passion pour le football, le basketball et le fitness. Engagement constant pour la performance et la santé.",
-    image: "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=800&q=80",
-    tags: ["Football", "Basketball", "Fitness"],
+    description: "Esprit de combativité, détermination et esprit d'équipe forgés à travers le volleyball, le judo et le football.",
+    image: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800&q=80",
+    tags: ["Volleyball", "Judo", "Football"],
   },
   {
     title: "Cinéma",
     description: "Amateur de films classiques et de blockbusters modernes. Fascination pour la cinématographie et la narration visuelle.",
-    image: "https://images.unsplash.com/photo-1500315331616-db7ccf9c825d?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1534809027769-b00d750a6bac?w=800&q=80",
     tags: ["Films", "Cinématographie", "Réalisation"],
   },
   {
