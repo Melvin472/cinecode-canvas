@@ -13,7 +13,7 @@ const interests = [
   {
     title: "Cinéma",
     description: "Amateur de films classiques et de blockbusters modernes. Fascination pour la cinématographie et la narration visuelle.",
-    image: "https://images.unsplash.com/photo-1534809027769-b00d750a6bac?w=800&q=80",
+    image: "https://upload.wikimedia.org/wikipedia/en/c/c3/Alien_movie_poster.jpg",
     tags: ["Films", "Cinématographie", "Réalisation"],
   },
   {
@@ -25,7 +25,7 @@ const interests = [
   {
     title: "Jeux Vidéo",
     description: "Joueur passionné de RPG et de jeux d'aventure. Immersion totale dans des univers interactifs captivants.",
-    image: "https://images.unsplash.com/photo-1511512578047-dfb6287edc3d?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&q=80",
     tags: ["RPG", "Aventure", "Gaming"],
   },
   {
