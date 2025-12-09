@@ -2,6 +2,7 @@ import Navigation from "@/components/Navigation";
 import SectionTitle from "@/components/SectionTitle";
 import InterestCard from "@/components/InterestCard";
 import Footer from "@/components/Footer";
+import { AnimatedCard } from "@/hooks/useScrollAnimation";
 
 const interests = [
   {
@@ -45,7 +46,9 @@ const Interests = () => {
         <div className="container mx-auto px-4 py-16">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {interests.map((interest, index) => (
-              <InterestCard key={index} interest={interest} />
+              <AnimatedCard key={index} index={index}>
+                <InterestCard interest={interest} />
+              </AnimatedCard>
             ))}
           </div>
         </div>
