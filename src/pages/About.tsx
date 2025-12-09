@@ -1,4 +1,4 @@
-import { GraduationCap, Briefcase, Calendar, MapPin, Film, Code, Heart } from "lucide-react";
+import { GraduationCap, Briefcase, Calendar, MapPin, Film, Code, Heart, Rocket, Target, Sparkles } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import SectionTitle from "@/components/SectionTitle";
 import Footer from "@/components/Footer";
@@ -38,6 +38,27 @@ const experience = [
     location: "IUT Toulon",
     description: "Développement de multiples projets incluant applications mobiles, cartes électroniques Bluetooth, et robots autonomes avec asservissement PID.",
     technologies: ["React Native", "Arduino", "Bluetooth", "Python", "C++"],
+  },
+];
+
+const objectives = [
+  {
+    icon: Rocket,
+    title: "Développeur Full-Stack",
+    description: "Devenir un développeur polyvalent maîtrisant aussi bien le front-end que le back-end, capable de créer des applications complètes de A à Z.",
+    color: "primary",
+  },
+  {
+    icon: Target,
+    title: "Innovation Technologique",
+    description: "Contribuer à des projets innovants qui fusionnent technologie et créativité, notamment dans les domaines de la robotique et de l'IoT.",
+    color: "cinema-red",
+  },
+  {
+    icon: Sparkles,
+    title: "Expériences Utilisateur Uniques",
+    description: "Créer des interfaces qui racontent des histoires, inspirées par le cinéma, offrant des expériences mémorables aux utilisateurs.",
+    color: "code-green",
   },
 ];
 
@@ -223,8 +244,34 @@ const About = () => {
         </div>
       </section>
 
+      {/* Objectifs Professionnels */}
+      <section className="py-16">
+        <div className="container mx-auto px-6">
+          <h3 className="font-display text-2xl font-semibold text-foreground mb-12 flex items-center gap-3">
+            <Rocket className="w-7 h-7 text-code-green" />
+            Objectifs Professionnels
+          </h3>
+          <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
+            {objectives.map((obj, index) => (
+              <AnimatedCard key={obj.title} index={index}>
+                <div className={`h-full bg-card/50 backdrop-blur-sm border border-border rounded-xl p-6 hover:border-${obj.color}/50 transition-all hover:shadow-lg hover:-translate-y-1 group relative overflow-hidden`}>
+                  <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-${obj.color}/10 to-transparent rounded-bl-full`} />
+                  <obj.icon className={`w-12 h-12 text-${obj.color} mb-4 group-hover:scale-110 transition-transform relative z-10`} />
+                  <h4 className="font-display text-lg font-semibold text-foreground mb-3 relative z-10">
+                    {obj.title}
+                  </h4>
+                  <p className="text-muted-foreground text-sm leading-relaxed relative z-10">
+                    {obj.description}
+                  </p>
+                </div>
+              </AnimatedCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Quote */}
-      <section className="py-20">
+      <section className="py-20 bg-card/30">
         <div className="container mx-auto px-6">
           <AnimatedCard>
             <blockquote className="max-w-2xl mx-auto text-center">
