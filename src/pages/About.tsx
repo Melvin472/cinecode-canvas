@@ -270,19 +270,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Quote */}
-      <section className="py-20 bg-card/30">
-        <div className="container mx-auto px-6">
-          <AnimatedCard>
-            <blockquote className="max-w-2xl mx-auto text-center">
-              <p className="font-display text-xl md:text-2xl italic text-foreground mb-4">
-                "Le cinéma, comme le code, raconte des histoires. L'un avec des images, l'autre avec des algorithmes."
-              </p>
-              <cite className="font-mono text-sm text-primary">— Ma philosophie</cite>
-            </blockquote>
-          </AnimatedCard>
-        </div>
-      </section>
 
       <Footer />
     </div>
