@@ -61,39 +61,39 @@
 
   /* Light theme */
   .light {
-    --background: 45 20% 96%;
+    --background: 0 0% 100%;
     --foreground: 240 10% 10%;
-    --card: 0 0% 100%;
+    --card: 0 0% 98%;
     --card-foreground: 240 10% 10%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 10%;
-    --primary: 45 90% 45%;
+    --primary: 45 90% 40%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 45 20% 90%;
+    --secondary: 45 10% 92%;
     --secondary-foreground: 240 10% 10%;
-    --muted: 45 15% 88%;
+    --muted: 45 10% 90%;
     --muted-foreground: 240 5% 40%;
     --accent: 0 70% 50%;
     --accent-foreground: 0 0% 100%;
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --border: 45 15% 85%;
-    --input: 45 15% 85%;
-    --ring: 45 90% 45%;
-    --gold: 45 90% 45%;
-    --gold-dim: 45 70% 35%;
+    --border: 45 10% 85%;
+    --input: 45 10% 85%;
+    --ring: 45 90% 40%;
+    --gold: 45 90% 40%;
+    --gold-dim: 45 70% 30%;
     --cinema-red: 0 70% 45%;
-    --film-grain: 45 10% 92%;
-    --spotlight: 45 100% 60%;
-    --code-green: 150 60% 35%;
+    --film-grain: 0 0% 95%;
+    --spotlight: 45 100% 55%;
+    --code-green: 150 60% 30%;
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 240 10% 10%;
-    --sidebar-primary: 45 90% 45%;
+    --sidebar-primary: 45 90% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 45 20% 90%;
+    --sidebar-accent: 45 10% 92%;
     --sidebar-accent-foreground: 240 10% 10%;
-    --sidebar-border: 45 15% 85%;
-    --sidebar-ring: 45 90% 45%;
+    --sidebar-border: 45 10% 85%;
+    --sidebar-ring: 45 90% 40%;
   }
 
   .dark {
@@ -111,7 +111,7 @@
     --muted-foreground: 240 5% 55%;
     --accent: 0 70% 50%;
     --accent-foreground: 45 30% 96%;
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
     --border: 240 8% 18%;
     --input: 240 8% 18%;

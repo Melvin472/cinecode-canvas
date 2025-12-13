@@ -4,65 +4,84 @@ import SectionTitle from "@/components/SectionTitle";
 import Footer from "@/components/Footer";
 import FilmStrip from "@/components/FilmStrip";
 import { AnimatedCard } from "@/hooks/useScrollAnimation";
-
-const education = [
-  {
-    period: "2022 - 2025",
-    title: "BUT GEII (Génie Électrique et Informatique Industrielle)",
-    institution: "IUT de Toulon",
-    location: "Toulon, France",
-    description: "Formation en électronique, informatique industrielle, automatisme et robotique. Spécialisation en systèmes embarqués et programmation.",
-  },
-  {
-    period: "2022",
-    title: "Baccalauréat STI2D",
-    institution: "Lycée Rouvière",
-    location: "Toulon, France",
-    description: "Spécialité Sciences et Technologies de l'Industrie et du Développement Durable. Option SIN (Systèmes d'Information et Numérique).",
-  },
-];
-
-const experience = [
-  {
-    period: "2024",
-    title: "Stage - Prolexia",
-    role: "Développeur Robotique",
-    location: "France",
-    description: "Tests et validation physiques pour la gestion du robot Oscar. Optimisation de l'asservissement PID, conception de carte électronique KICAD pour géolocalisation avec RTK GNSS et intégration des capteurs.",
-    technologies: ["Python", "KICAD", "RTK GNSS", "PID", "Robotique"],
-  },
-  {
-    period: "2023 - 2024",
-    title: "Projets Universitaires",
-    role: "Développeur Full-Stack",
-    location: "IUT Toulon",
-    description: "Développement de multiples projets incluant applications mobiles, cartes électroniques Bluetooth, et robots autonomes avec asservissement PID.",
-    technologies: ["React Native", "Arduino", "Bluetooth", "Python", "C++"],
-  },
-];
-
-const objectives = [
-  {
-    icon: Rocket,
-    title: "Développeur Full-Stack",
-    description: "Devenir un développeur polyvalent maîtrisant aussi bien le front-end que le back-end, capable de créer des applications complètes de A à Z.",
-    color: "primary",
-  },
-  {
-    icon: Target,
-    title: "Innovation Technologique",
-    description: "Contribuer à des projets innovants qui fusionnent technologie et créativité, notamment dans les domaines de la robotique et de l'IoT.",
-    color: "cinema-red",
-  },
-  {
-    icon: Sparkles,
-    title: "Expériences Utilisateur Uniques",
-    description: "Créer des interfaces qui racontent des histoires, inspirées par le cinéma, offrant des expériences mémorables aux utilisateurs.",
-    color: "code-green",
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const About = () => {
+  const { t, language } = useLanguage();
+
+  const education = [
+    {
+      period: "2022 - 2025",
+      title: language === "fr" 
+        ? "BUT GEII (Génie Électrique et Informatique Industrielle)"
+        : "BUT GEII (Electrical and Industrial IT Engineering)",
+      institution: "IUT de Toulon",
+      location: "Toulon, France",
+      description: language === "fr"
+        ? "Formation en électronique, informatique industrielle, automatisme et robotique. Spécialisation en systèmes embarqués et programmation."
+        : "Training in electronics, industrial computing, automation and robotics. Specialization in embedded systems and programming.",
+    },
+    {
+      period: "2022",
+      title: language === "fr" ? "Baccalauréat STI2D" : "STI2D Baccalaureate",
+      institution: "Lycée Rouvière",
+      location: "Toulon, France",
+      description: language === "fr"
+        ? "Spécialité Sciences et Technologies de l'Industrie et du Développement Durable. Option SIN (Systèmes d'Information et Numérique)."
+        : "Specialty in Industrial Sciences and Technologies and Sustainable Development. SIN option (Information and Digital Systems).",
+    },
+  ];
+
+  const experience = [
+    {
+      period: "2024",
+      title: "Stage - Prolexia",
+      role: language === "fr" ? "Développeur Robotique" : "Robotics Developer",
+      location: "France",
+      description: language === "fr"
+        ? "Tests et validation physiques pour la gestion du robot Oscar. Optimisation de l'asservissement PID, conception de carte électronique KICAD pour géolocalisation avec RTK GNSS et intégration des capteurs."
+        : "Physical testing and validation for Oscar robot management. PID control optimization, KICAD electronic board design for RTK GNSS geolocation and sensor integration.",
+      technologies: ["Python", "KICAD", "RTK GNSS", "PID", language === "fr" ? "Robotique" : "Robotics"],
+    },
+    {
+      period: "2023 - 2024",
+      title: language === "fr" ? "Projets Universitaires" : "University Projects",
+      role: language === "fr" ? "Développeur Full-Stack" : "Full-Stack Developer",
+      location: "IUT Toulon",
+      description: language === "fr"
+        ? "Développement de multiples projets incluant applications mobiles, cartes électroniques Bluetooth, et robots autonomes avec asservissement PID."
+        : "Development of multiple projects including mobile applications, Bluetooth electronic boards, and autonomous robots with PID control.",
+      technologies: ["React Native", "Arduino", "Bluetooth", "Python", "C++"],
+    },
+  ];
+
+  const objectives = [
+    {
+      icon: Rocket,
+      title: language === "fr" ? "Développeur Full-Stack" : "Full-Stack Developer",
+      description: language === "fr"
+        ? "Devenir un développeur polyvalent maîtrisant aussi bien le front-end que le back-end, capable de créer des applications complètes de A à Z."
+        : "Become a versatile developer mastering both front-end and back-end, capable of creating complete applications from A to Z.",
+      color: "primary",
+    },
+    {
+      icon: Target,
+      title: language === "fr" ? "Innovation Technologique" : "Technological Innovation",
+      description: language === "fr"
+        ? "Contribuer à des projets innovants qui fusionnent technologie et créativité, notamment dans les domaines de la robotique et de l'IoT."
+        : "Contribute to innovative projects that merge technology and creativity, especially in robotics and IoT.",
+      color: "cinema-red",
+    },
+    {
+      icon: Sparkles,
+      title: language === "fr" ? "Expériences Utilisateur Uniques" : "Unique User Experiences",
+      description: language === "fr"
+        ? "Créer des interfaces qui racontent des histoires, inspirées par le cinéma, offrant des expériences mémorables aux utilisateurs."
+        : "Create interfaces that tell stories, inspired by cinema, offering memorable experiences to users.",
+      color: "code-green",
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -72,8 +91,8 @@ const About = () => {
         <FilmStrip className="absolute top-24 left-0 right-0 opacity-10" />
         <div className="container mx-auto px-6">
           <SectionTitle
-            title="À Propos"
-            subtitle="Mon parcours entre cinéma et code"
+            title={t.about.title}
+            subtitle={language === "fr" ? "Mon parcours entre cinéma et code" : "My journey between cinema and code"}
           />
         </div>
       </section>
@@ -92,12 +111,25 @@ const About = () => {
                     Melvin Lacote
                   </h2>
                   <p className="text-muted-foreground leading-relaxed mb-6">
-                    Étudiant passionné en BUT GEII à Toulon, je fusionne mes deux passions : 
-                    le <span className="text-cinema-red font-semibold">cinéma</span> et la 
-                    <span className="text-code-green font-semibold"> programmation</span>. 
-                    Mon parcours m'a permis de développer des compétences en robotique, 
-                    électronique et développement d'applications, tout en gardant un œil 
-                    créatif inspiré par le 7ème art.
+                    {language === "fr" ? (
+                      <>
+                        Étudiant passionné en BUT GEII à Toulon, je fusionne mes deux passions : 
+                        le <span className="text-cinema-red font-semibold">cinéma</span> et la 
+                        <span className="text-code-green font-semibold"> programmation</span>. 
+                        Mon parcours m'a permis de développer des compétences en robotique, 
+                        électronique et développement d'applications, tout en gardant un œil 
+                        créatif inspiré par le 7ème art.
+                      </>
+                    ) : (
+                      <>
+                        Passionate student in BUT GEII in Toulon, I merge my two passions: 
+                        <span className="text-cinema-red font-semibold"> cinema</span> and 
+                        <span className="text-code-green font-semibold"> programming</span>. 
+                        My journey has allowed me to develop skills in robotics, 
+                        electronics and application development, while keeping a creative eye 
+                        inspired by the 7th art.
+                      </>
+                    )}
                   </p>
                   <div className="flex flex-wrap justify-center md:justify-start gap-4">
                     <span className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -106,11 +138,11 @@ const About = () => {
                     </span>
                     <span className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Film className="w-4 h-4 text-cinema-red" />
-                      Passionné de cinéma
+                      {language === "fr" ? "Passionné de cinéma" : "Cinema enthusiast"}
                     </span>
                     <span className="flex items-center gap-2 text-sm text-muted-foreground">
                       <Code className="w-4 h-4 text-code-green" />
-                      Développeur créatif
+                      {language === "fr" ? "Développeur créatif" : "Creative developer"}
                     </span>
                   </div>
                 </div>
@@ -125,7 +157,7 @@ const About = () => {
         <div className="container mx-auto px-6">
           <h3 className="font-display text-2xl font-semibold text-foreground mb-12 flex items-center gap-3">
             <GraduationCap className="w-7 h-7 text-primary" />
-            Parcours Académique
+            {t.about.academicTitle}
           </h3>
           <div className="max-w-4xl mx-auto space-y-8">
             {education.map((edu, index) => (
@@ -163,7 +195,7 @@ const About = () => {
         <div className="container mx-auto px-6">
           <h3 className="font-display text-2xl font-semibold text-foreground mb-12 flex items-center gap-3">
             <Briefcase className="w-7 h-7 text-cinema-red" />
-            Expériences Professionnelles
+            {t.about.professionalTitle}
           </h3>
           <div className="max-w-4xl mx-auto space-y-8">
             {experience.map((exp, index) => (
@@ -211,19 +243,20 @@ const About = () => {
         <div className="container mx-auto px-6">
           <h3 className="font-display text-2xl font-semibold text-foreground mb-12 flex items-center gap-3">
             <Heart className="w-7 h-7 text-primary" />
-            Ce Qui Me Passionne
+            {language === "fr" ? "Ce Qui Me Passionne" : "What Drives Me"}
           </h3>
           <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
             <AnimatedCard index={0}>
               <div className="bg-card/50 backdrop-blur-sm border border-border rounded-xl p-6 hover:border-cinema-red/50 transition-all hover:shadow-lg group">
                 <Film className="w-10 h-10 text-cinema-red mb-4 group-hover:scale-110 transition-transform" />
                 <h4 className="font-display text-lg font-semibold text-foreground mb-2">
-                  Le Cinéma
+                  {language === "fr" ? "Le Cinéma" : "Cinema"}
                 </h4>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Le 7ème art me fascine depuis toujours. La façon dont une histoire peut être 
-                  racontée à travers les images, la lumière et le son m'inspire dans ma façon 
-                  de concevoir des interfaces et des expériences utilisateur.
+                  {language === "fr"
+                    ? "Le 7ème art me fascine depuis toujours. La façon dont une histoire peut être racontée à travers les images, la lumière et le son m'inspire dans ma façon de concevoir des interfaces et des expériences utilisateur."
+                    : "The 7th art has always fascinated me. The way a story can be told through images, light and sound inspires me in designing interfaces and user experiences."
+                  }
                 </p>
               </div>
             </AnimatedCard>
@@ -231,12 +264,13 @@ const About = () => {
               <div className="bg-card/50 backdrop-blur-sm border border-border rounded-xl p-6 hover:border-code-green/50 transition-all hover:shadow-lg group">
                 <Code className="w-10 h-10 text-code-green mb-4 group-hover:scale-110 transition-transform" />
                 <h4 className="font-display text-lg font-semibold text-foreground mb-2">
-                  La Programmation
+                  {language === "fr" ? "La Programmation" : "Programming"}
                 </h4>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  Créer des solutions techniques qui fonctionnent et qui sont élégantes 
-                  est ce qui me motive. De la robotique aux applications mobiles, chaque 
-                  projet est une nouvelle opportunité d'innover.
+                  {language === "fr"
+                    ? "Créer des solutions techniques qui fonctionnent et qui sont élégantes est ce qui me motive. De la robotique aux applications mobiles, chaque projet est une nouvelle opportunité d'innover."
+                    : "Creating technical solutions that work and are elegant is what motivates me. From robotics to mobile apps, every project is a new opportunity to innovate."
+                  }
                 </p>
               </div>
             </AnimatedCard>
@@ -249,7 +283,7 @@ const About = () => {
         <div className="container mx-auto px-6">
           <h3 className="font-display text-2xl font-semibold text-foreground mb-12 flex items-center gap-3">
             <Rocket className="w-7 h-7 text-code-green" />
-            Objectifs Professionnels
+            {t.about.objectivesTitle}
           </h3>
           <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
             {objectives.map((obj, index) => (
@@ -269,7 +303,6 @@ const About = () => {
           </div>
         </div>
       </section>
-
 
       <Footer />
     </div>
