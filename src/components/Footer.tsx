@@ -1,7 +1,10 @@
 import { Film, Code, Heart } from "lucide-react";
 import FilmStrip from "./FilmStrip";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Footer = () => {
+  const { t, language } = useLanguage();
+
   return (
     <footer className="relative mt-20 border-t border-border bg-card/50">
       <FilmStrip className="absolute top-0 left-0 right-0" />
@@ -15,11 +18,15 @@ const Footer = () => {
           </div>
           
           <p className="text-sm text-muted-foreground mb-4">
-            Créé avec <Heart className="inline w-4 h-4 text-cinema-red mx-1" /> passion pour le cinéma et le code
+            {language === "fr" ? (
+              <>Créé avec <Heart className="inline w-4 h-4 text-cinema-red mx-1" /> passion pour le cinéma et le code</>
+            ) : (
+              <>Created with <Heart className="inline w-4 h-4 text-cinema-red mx-1" /> passion for cinema and code</>
+            )}
           </p>
           
           <p className="font-mono text-xs text-muted-foreground">
-            © {new Date().getFullYear()} — Tous droits réservés
+            © {new Date().getFullYear()} — {t.footer.rights}
           </p>
         </div>
       </div>

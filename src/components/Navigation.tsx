@@ -2,18 +2,22 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Menu, X, Film, Code } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const navItems = [
-  { path: "/", label: "Accueil" },
-  { path: "/about", label: "À Propos" },
-  { path: "/skills", label: "Compétences" },
-  { path: "/projects", label: "Projets" },
-  { path: "/interests", label: "Centre d'intérêt" },
-  { path: "/contact", label: "Contact" },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageToggle } from "@/components/LanguageToggle";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLanguage();
+
+  const navItems = [
+    { path: "/", label: t.nav.home },
+    { path: "/about", label: t.nav.about },
+    { path: "/skills", label: t.nav.skills },
+    { path: "/projects", label: t.nav.projects },
+    { path: "/interests", label: t.nav.interests },
+    { path: "/contact", label: t.nav.contact },
+  ];
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
@@ -31,7 +35,7 @@ const Navigation = () => {
           </NavLink>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
               <NavLink
                 key={item.path}
@@ -48,16 +52,26 @@ const Navigation = () => {
                 {item.label}
               </NavLink>
             ))}
+            
+            {/* Theme and Language toggles */}
+            <div className="flex items-center gap-2 ml-4 pl-4 border-l border-border">
+              <LanguageToggle />
+              <ThemeToggle />
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-foreground hover:text-primary transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className="md:hidden flex items-center gap-2">
+            <LanguageToggle />
+            <ThemeToggle />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2 text-foreground hover:text-primary transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
       </div>
 

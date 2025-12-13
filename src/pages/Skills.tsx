@@ -19,95 +19,124 @@ import SectionTitle from "@/components/SectionTitle";
 import SkillCard from "@/components/SkillCard";
 import FilmStrip from "@/components/FilmStrip";
 import Footer from "@/components/Footer";
-
-const programmingSkills = [
-  {
-    icon: Code,
-    title: "React & JavaScript",
-    description: "Développement d'applications mobiles et web (Beatmoji)",
-    level: 85,
-  },
-  {
-    icon: Cpu,
-    title: "Python",
-    description: "Programmation robotique et asservissement PID",
-    level: 90,
-  },
-  {
-    icon: Gamepad2,
-    title: "C++ & Unreal Engine",
-    description: "Développement de jeux vidéo et environnements 3D",
-    level: 75,
-  },
-  {
-    icon: Smartphone,
-    title: "React Native",
-    description: "Applications mobiles iOS/Android",
-    level: 80,
-  },
-];
-
-const electronicsSkills = [
-  {
-    icon: CircuitBoard,
-    title: "KICAD",
-    description: "Conception de cartes électroniques (RTK GNSS)",
-    level: 85,
-  },
-  {
-    icon: Bluetooth,
-    title: "Bluetooth & Capteurs",
-    description: "Communication sans fil et acquisition de données",
-    level: 80,
-  },
-  {
-    icon: Cog,
-    title: "Robotique & PID",
-    description: "Asservissement et contrôle de robots autonomes",
-    level: 90,
-  },
-];
-
-const softSkills = [
-  {
-    icon: Lightbulb,
-    title: "Créativité",
-    description: "Capacité à innover et proposer des solutions originales",
-    level: 90,
-  },
-  {
-    icon: Users,
-    title: "Travail d'équipe",
-    description: "Collaboration efficace et partage des connaissances",
-    level: 85,
-  },
-  {
-    icon: Target,
-    title: "Résolution de problèmes",
-    description: "Analyse et résolution méthodique des défis techniques",
-    level: 88,
-  },
-  {
-    icon: Clock,
-    title: "Gestion du temps",
-    description: "Organisation et respect des délais de projet",
-    level: 82,
-  },
-  {
-    icon: Brain,
-    title: "Adaptabilité",
-    description: "Apprentissage rapide de nouvelles technologies",
-    level: 90,
-  },
-  {
-    icon: MessageCircle,
-    title: "Communication",
-    description: "Expression claire des idées techniques et non-techniques",
-    level: 85,
-  },
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Skills = () => {
+  const { t, language } = useLanguage();
+
+  const programmingSkills = [
+    {
+      icon: Code,
+      title: "React & JavaScript",
+      description: language === "fr" 
+        ? "Développement d'applications mobiles et web (Beatmoji)"
+        : "Mobile and web application development (Beatmoji)",
+      level: 85,
+    },
+    {
+      icon: Cpu,
+      title: "Python",
+      description: language === "fr"
+        ? "Programmation robotique et asservissement PID"
+        : "Robotic programming and PID control",
+      level: 90,
+    },
+    {
+      icon: Gamepad2,
+      title: "C++ & Unreal Engine",
+      description: language === "fr"
+        ? "Développement de jeux vidéo et environnements 3D"
+        : "Video game development and 3D environments",
+      level: 75,
+    },
+    {
+      icon: Smartphone,
+      title: "React Native",
+      description: language === "fr"
+        ? "Applications mobiles iOS/Android"
+        : "iOS/Android mobile applications",
+      level: 80,
+    },
+  ];
+
+  const electronicsSkills = [
+    {
+      icon: CircuitBoard,
+      title: "KICAD",
+      description: language === "fr"
+        ? "Conception de cartes électroniques (RTK GNSS)"
+        : "Electronic board design (RTK GNSS)",
+      level: 85,
+    },
+    {
+      icon: Bluetooth,
+      title: language === "fr" ? "Bluetooth & Capteurs" : "Bluetooth & Sensors",
+      description: language === "fr"
+        ? "Communication sans fil et acquisition de données"
+        : "Wireless communication and data acquisition",
+      level: 80,
+    },
+    {
+      icon: Cog,
+      title: language === "fr" ? "Robotique & PID" : "Robotics & PID",
+      description: language === "fr"
+        ? "Asservissement et contrôle de robots autonomes"
+        : "Control and automation of autonomous robots",
+      level: 90,
+    },
+  ];
+
+  const softSkills = [
+    {
+      icon: Lightbulb,
+      title: language === "fr" ? "Créativité" : "Creativity",
+      description: language === "fr"
+        ? "Capacité à innover et proposer des solutions originales"
+        : "Ability to innovate and propose original solutions",
+      level: 90,
+    },
+    {
+      icon: Users,
+      title: language === "fr" ? "Travail d'équipe" : "Teamwork",
+      description: language === "fr"
+        ? "Collaboration efficace et partage des connaissances"
+        : "Effective collaboration and knowledge sharing",
+      level: 85,
+    },
+    {
+      icon: Target,
+      title: language === "fr" ? "Résolution de problèmes" : "Problem Solving",
+      description: language === "fr"
+        ? "Analyse et résolution méthodique des défis techniques"
+        : "Methodical analysis and resolution of technical challenges",
+      level: 88,
+    },
+    {
+      icon: Clock,
+      title: language === "fr" ? "Gestion du temps" : "Time Management",
+      description: language === "fr"
+        ? "Organisation et respect des délais de projet"
+        : "Organization and meeting project deadlines",
+      level: 82,
+    },
+    {
+      icon: Brain,
+      title: language === "fr" ? "Adaptabilité" : "Adaptability",
+      description: language === "fr"
+        ? "Apprentissage rapide de nouvelles technologies"
+        : "Quick learning of new technologies",
+      level: 90,
+    },
+    {
+      icon: MessageCircle,
+      title: "Communication",
+      description: language === "fr"
+        ? "Expression claire des idées techniques et non-techniques"
+        : "Clear expression of technical and non-technical ideas",
+      level: 85,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -117,8 +146,8 @@ const Skills = () => {
         <FilmStrip className="absolute top-24 left-0 right-0 opacity-10" />
         <div className="container mx-auto px-6">
           <SectionTitle
-            title="Compétences"
-            subtitle="Les outils de ma palette créative"
+            title={t.skills.title}
+            subtitle={language === "fr" ? "Les outils de ma palette créative" : "The tools of my creative palette"}
           />
         </div>
       </section>
@@ -128,7 +157,7 @@ const Skills = () => {
         <div className="container mx-auto px-6">
           <h3 className="font-display text-2xl font-semibold text-foreground mb-8 flex items-center gap-3">
             <Code className="w-6 h-6 text-code-green" />
-            Programmation
+            {t.skills.programming}
           </h3>
           <div className="grid md:grid-cols-2 gap-6">
             {programmingSkills.map((skill, index) => (
@@ -149,7 +178,7 @@ const Skills = () => {
         <div className="container mx-auto px-6">
           <h3 className="font-display text-2xl font-semibold text-foreground mb-8 flex items-center gap-3">
             <CircuitBoard className="w-6 h-6 text-primary" />
-            Électronique & Robotique
+            {t.skills.electronics}
           </h3>
           <div className="grid md:grid-cols-2 gap-6">
             {electronicsSkills.map((skill, index) => (
@@ -170,7 +199,7 @@ const Skills = () => {
         <div className="container mx-auto px-6">
           <h3 className="font-display text-2xl font-semibold text-foreground mb-8 flex items-center gap-3">
             <Sparkles className="w-6 h-6 text-cinema-red" />
-            Soft Skills
+            {t.skills.softSkills}
           </h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {softSkills.map((skill, index) => (
