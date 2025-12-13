@@ -7,17 +7,25 @@ import CodeSnippet from "@/components/CodeSnippet";
 import FilmStrip from "@/components/FilmStrip";
 import Footer from "@/components/Footer";
 import { AnimatedCard } from "@/hooks/useScrollAnimation";
+import { useLanguage } from "@/contexts/LanguageContext";
 import heroBg from "@/assets/hero-bg.jpg";
-
-const skills = [
-  { icon: Code, label: "React & JavaScript", color: "text-code-green" },
-  { icon: Cpu, label: "Python & Robotique", color: "text-primary" },
-  { icon: Gamepad2, label: "C++ & Unreal", color: "text-cinema-red" },
-];
 
 const Index = () => {
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
   const [isLoaded, setIsLoaded] = useState(false);
+  const { t, language } = useLanguage();
+
+  const skills = [
+    { icon: Code, label: "React & JavaScript", color: "text-code-green" },
+    { icon: Cpu, label: language === "fr" ? "Python & Robotique" : "Python & Robotics", color: "text-primary" },
+    { icon: Gamepad2, label: "C++ & Unreal", color: "text-cinema-red" },
+  ];
+
+  const stats = [
+    { value: "10+", label: t.home.completedProjects, delay: 0 },
+    { value: "100+", label: language === "fr" ? "Films vus" : "Movies watched", delay: 1 },
+    { value: "∞", label: "Passion", delay: 2 },
+  ];
 
   useEffect(() => {
     setIsLoaded(true);
@@ -70,7 +78,7 @@ const Index = () => {
             >
               <Clapperboard className="w-4 h-4 text-primary animate-pulse" />
               <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                Cinéma × Code
+                {language === "fr" ? "Cinéma × Code" : "Cinema × Code"}
               </span>
               <Terminal className="w-4 h-4 text-code-green animate-pulse" />
             </div>
@@ -80,17 +88,35 @@ const Index = () => {
               className={`font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
               style={{ transitionDelay: '400ms' }}
             >
-              Là où le{" "}
-              <span className="text-gradient-gold relative">
-                7ème art
-                <span className="absolute -inset-1 bg-primary/20 blur-xl rounded-lg -z-10" />
-              </span>
-              <br />
-              rencontre le{" "}
-              <span className="text-code-green relative">
-                code
-                <span className="absolute -inset-1 bg-code-green/20 blur-xl rounded-lg -z-10" />
-              </span>
+              {language === "fr" ? (
+                <>
+                  Là où le{" "}
+                  <span className="text-gradient-gold relative">
+                    7ème art
+                    <span className="absolute -inset-1 bg-primary/20 blur-xl rounded-lg -z-10" />
+                  </span>
+                  <br />
+                  rencontre le{" "}
+                  <span className="text-code-green relative">
+                    code
+                    <span className="absolute -inset-1 bg-code-green/20 blur-xl rounded-lg -z-10" />
+                  </span>
+                </>
+              ) : (
+                <>
+                  Where{" "}
+                  <span className="text-gradient-gold relative">
+                    cinema
+                    <span className="absolute -inset-1 bg-primary/20 blur-xl rounded-lg -z-10" />
+                  </span>
+                  <br />
+                  meets{" "}
+                  <span className="text-code-green relative">
+                    code
+                    <span className="absolute -inset-1 bg-code-green/20 blur-xl rounded-lg -z-10" />
+                  </span>
+                </>
+              )}
             </h1>
 
             {/* Subtitle */}
@@ -98,8 +124,10 @@ const Index = () => {
               className={`text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
               style={{ transitionDelay: '600ms' }}
             >
-              Développeur front-end passionné par le cinéma. Je crée des expériences 
-              web aussi captivantes qu'une scène de film.
+              {language === "fr" 
+                ? "Développeur front-end passionné par le cinéma. Je crée des expériences web aussi captivantes qu'une scène de film."
+                : "Front-end developer passionate about cinema. I create web experiences as captivating as a movie scene."
+              }
             </p>
 
             {/* Skills badges */}
@@ -130,7 +158,7 @@ const Index = () => {
                 asChild
               >
                 <Link to="/projects">
-                  Voir mes projets
+                  {t.home.viewProjects}
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -140,7 +168,7 @@ const Index = () => {
                 className="border-border text-foreground hover:bg-secondary hover:border-primary/50 font-mono uppercase tracking-wider"
                 asChild
               >
-                <Link to="/contact">Me contacter</Link>
+                <Link to="/contact">{t.home.contactMe}</Link>
               </Button>
             </div>
 
@@ -172,23 +200,20 @@ const Index = () => {
           <AnimatedCard>
             <div className="max-w-3xl mx-auto text-center">
               <h2 className="font-display text-2xl md:text-3xl font-semibold text-foreground mb-6">
-                Mon approche
+                {language === "fr" ? "Mon approche" : "My approach"}
               </h2>
               <p className="text-muted-foreground leading-relaxed">
-                Comme un réalisateur compose ses plans, je construis des interfaces avec précision et émotion. 
-                Chaque ligne de code est une prise, chaque composant une scène. Le résultat ? 
-                Des applications web qui racontent une histoire et captivent les utilisateurs.
+                {language === "fr" 
+                  ? "Comme un réalisateur compose ses plans, je construis des interfaces avec précision et émotion. Chaque ligne de code est une prise, chaque composant une scène. Le résultat ? Des applications web qui racontent une histoire et captivent les utilisateurs."
+                  : "Like a director composes their shots, I build interfaces with precision and emotion. Every line of code is a take, every component a scene. The result? Web applications that tell a story and captivate users."
+                }
               </p>
             </div>
           </AnimatedCard>
 
           {/* Stats */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16 max-w-3xl mx-auto">
-            {[
-              { value: "10+", label: "Projets réalisés", delay: 0 },
-              { value: "100+", label: "Films vus", delay: 1 },
-              { value: "∞", label: "Passion", delay: 2 },
-            ].map((stat) => (
+            {stats.map((stat) => (
               <AnimatedCard key={stat.label} index={stat.delay}>
                 <div className="text-center p-6 rounded-lg bg-card border border-border hover:border-primary/50 transition-all hover:shadow-lg hover:shadow-primary/5 group">
                   <div className="font-display text-3xl md:text-4xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">

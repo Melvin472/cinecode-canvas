@@ -8,6 +8,7 @@ import Navigation from "@/components/Navigation";
 import SectionTitle from "@/components/SectionTitle";
 import FilmStrip from "@/components/FilmStrip";
 import Footer from "@/components/Footer";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Official Letterboxd icon component (three dots)
 const LetterboxdIcon = ({ className }: { className?: string }) => (
@@ -32,6 +33,7 @@ const socialLinks = [
 
 const Contact = () => {
   const { toast } = useToast();
+  const { t, language } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -42,8 +44,8 @@ const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
-      title: "Message envoyé !",
-      description: "Je vous répondrai dans les plus brefs délais.",
+      title: language === "fr" ? "Message envoyé !" : "Message sent!",
+      description: language === "fr" ? "Je vous répondrai dans les plus brefs délais." : "I will get back to you as soon as possible.",
     });
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
@@ -63,12 +65,14 @@ const Contact = () => {
         <FilmStrip className="absolute top-24 left-0 right-0 opacity-10" />
         <div className="container mx-auto px-6">
           <SectionTitle
-            title="Contact"
-            subtitle="Écrivons ensemble la prochaine scène"
+            title={t.contact.title}
+            subtitle={language === "fr" ? "Écrivons ensemble la prochaine scène" : "Let's write the next scene together"}
           />
           <p className="text-center text-muted-foreground max-w-2xl mx-auto">
-            Que ce soit pour un projet, une collaboration ou simplement discuter 
-            cinéma et code, je suis à l'écoute.
+            {language === "fr" 
+              ? "Que ce soit pour un projet, une collaboration ou simplement discuter cinéma et code, je suis à l'écoute."
+              : "Whether it's for a project, collaboration or just discussing cinema and code, I'm all ears."
+            }
           </p>
         </div>
       </section>
@@ -81,7 +85,7 @@ const Contact = () => {
             <div className="space-y-8">
               <div>
                 <h3 className="font-display text-2xl font-semibold text-foreground mb-6">
-                  Informations
+                  {language === "fr" ? "Informations" : "Information"}
                 </h3>
                 
                 <div className="space-y-4">
@@ -91,7 +95,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
-                        Email
+                        {t.contact.email}
                       </p>
                       <p className="text-foreground">melvin.lacote@gmail.com</p>
                     </div>
@@ -103,7 +107,7 @@ const Contact = () => {
                     </div>
                     <div>
                       <p className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
-                        Localisation
+                        {t.contact.location}
                       </p>
                       <p className="text-foreground">Toulon, France</p>
                     </div>
@@ -114,7 +118,7 @@ const Contact = () => {
               {/* Social Links */}
               <div>
                 <h3 className="font-display text-xl font-semibold text-foreground mb-4">
-                  Réseaux sociaux
+                  {t.contact.socialProfiles}
                 </h3>
                 <div className="flex gap-4">
                   {socialLinks.map((social) => (
@@ -135,7 +139,7 @@ const Contact = () => {
               {/* CV Download */}
               <div>
                 <h3 className="font-display text-xl font-semibold text-foreground mb-4">
-                  Mon CV
+                  {language === "fr" ? "Mon CV" : "My Resume"}
                 </h3>
                 <a
                   href="/documents/Melvin_Lacote_CV.pdf"
@@ -147,7 +151,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="font-mono text-sm text-foreground group-hover:text-primary transition-colors">
-                      Télécharger mon CV
+                      {t.contact.downloadCV}
                     </p>
                     <p className="text-xs text-muted-foreground">PDF • Melvin Lacote</p>
                   </div>
@@ -169,7 +173,7 @@ const Contact = () => {
             {/* Contact Form */}
             <div className="p-8 rounded-lg bg-card border border-border">
               <h3 className="font-display text-2xl font-semibold text-foreground mb-6">
-                Envoyez un message
+                {language === "fr" ? "Envoyez un message" : "Send a message"}
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -179,14 +183,14 @@ const Contact = () => {
                       htmlFor="name"
                       className="block font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2"
                     >
-                      Nom
+                      {language === "fr" ? "Nom" : "Name"}
                     </label>
                     <Input
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Votre nom"
+                      placeholder={language === "fr" ? "Votre nom" : "Your name"}
                       required
                       className="bg-secondary border-border focus:border-primary"
                     />
@@ -204,7 +208,7 @@ const Contact = () => {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="votre@email.com"
+                      placeholder={language === "fr" ? "votre@email.com" : "your@email.com"}
                       required
                       className="bg-secondary border-border focus:border-primary"
                     />
@@ -216,14 +220,14 @@ const Contact = () => {
                     htmlFor="subject"
                     className="block font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2"
                   >
-                    Sujet
+                    {language === "fr" ? "Sujet" : "Subject"}
                   </label>
                   <Input
                     id="subject"
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="L'objet de votre message"
+                    placeholder={language === "fr" ? "L'objet de votre message" : "Subject of your message"}
                     required
                     className="bg-secondary border-border focus:border-primary"
                   />
@@ -241,7 +245,7 @@ const Contact = () => {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Racontez-moi votre projet..."
+                    placeholder={language === "fr" ? "Racontez-moi votre projet..." : "Tell me about your project..."}
                     rows={5}
                     required
                     className="bg-secondary border-border focus:border-primary resize-none"
@@ -253,7 +257,7 @@ const Contact = () => {
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-mono uppercase tracking-wider"
                 >
                   <Send className="w-4 h-4 mr-2" />
-                  Envoyer
+                  {language === "fr" ? "Envoyer" : "Send"}
                 </Button>
               </form>
             </div>
