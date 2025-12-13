@@ -45,6 +45,13 @@ const projects = [
     tags: ["Unreal Engine", "C++", "3D", "Game Design"],
     githubUrl: "https://github.com/Melvin472/projet-unreal",
   },
+  {
+    title: "Bee's Hive - Roguelike Gestion",
+    description:
+      "Jeu vidéo développé sous Godot mêlant roguelike et gestion. Incarnez une abeille gérant sa ruche, partez en expédition pour récolter des matériaux et combattez des ennemis pour assurer la survie de votre colonie.",
+    image: "/image/beeshive.png",
+    tags: ["Godot", "GDScript", "Roguelike", "Gestion", "Game Design"],
+  },
 ];
 
 const Projects = () => {
