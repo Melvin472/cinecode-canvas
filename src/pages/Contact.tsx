@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, MapPin, Github, Linkedin, Send, FileDown } from "lucide-react";
+import { Mail, MapPin, Github, Linkedin, Send, FileDown, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -9,6 +9,7 @@ import SectionTitle from "@/components/SectionTitle";
 import FilmStrip from "@/components/FilmStrip";
 import Footer from "@/components/Footer";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { supabase } from "@/integrations/supabase/client";
 
 // Official Letterboxd icon component (three dots)
 const LetterboxdIcon = ({ className }: { className?: string }) => (
@@ -34,6 +35,7 @@ const socialLinks = [
 const Contact = () => {
   const { toast } = useToast();
   const { t, language } = useLanguage();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -41,13 +43,32 @@ const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: language === "fr" ? "Message envoyé !" : "Message sent!",
-      description: language === "fr" ? "Je vous répondrai dans les plus brefs délais." : "I will get back to you as soon as possible.",
-    });
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setIsLoading(true);
+
+    try {
+      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+        body: formData,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: language === "fr" ? "Message envoyé !" : "Message sent!",
+        description: language === "fr" ? "Je vous répondrai dans les plus brefs délais." : "I will get back to you as soon as possible.",
+      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error: any) {
+      console.error("Error sending message:", error);
+      toast({
+        title: language === "fr" ? "Erreur" : "Error",
+        description: language === "fr" ? "Une erreur est survenue. Veuillez réessayer." : "An error occurred. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (
@@ -254,10 +275,18 @@ const Contact = () => {
 
                 <Button
                   type="submit"
+                  disabled={isLoading}
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-mono uppercase tracking-wider"
                 >
-                  <Send className="w-4 h-4 mr-2" />
-                  {language === "fr" ? "Envoyer" : "Send"}
+                  {isLoading ? (
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  ) : (
+                    <Send className="w-4 h-4 mr-2" />
+                  )}
+                  {isLoading 
+                    ? (language === "fr" ? "Envoi..." : "Sending...") 
+                    : (language === "fr" ? "Envoyer" : "Send")
+                  }
                 </Button>
               </form>
             </div>
