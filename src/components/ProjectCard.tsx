@@ -1,8 +1,11 @@
+import { Link } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { ExternalLink, Github, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface ProjectCardProps {
+  slug: string;
   title: string;
   description: string;
   image: string;
@@ -13,6 +16,7 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({
+  slug,
   title,
   description,
   image,
@@ -21,44 +25,50 @@ const ProjectCard = ({
   githubUrl,
   className,
 }: ProjectCardProps) => {
+  const { language } = useLanguage();
+
   return (
-      <div
-        className={cn(
-          "group relative bg-black rounded-lg overflow-hidden border border-border",
-          "transition-all duration-500 ease-out",
-          "hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/20",
-          "hover:-translate-y-2 hover:scale-[1.02]",
-          className
-        )}
-      >
-      {/* Image with overlay */}
-      <div className="relative aspect-video overflow-hidden">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-115"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
-        
-        {/* Play button overlay */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-          <div className="p-4 rounded-full bg-primary/90 text-primary-foreground transform scale-50 group-hover:scale-100 transition-all duration-500 ease-out shadow-lg shadow-primary/30">
-            <Play className="w-8 h-8" fill="currentColor" />
+    <div
+      className={cn(
+        "group relative bg-black rounded-lg overflow-hidden border border-border",
+        "transition-all duration-500 ease-out",
+        "hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/20",
+        "hover:-translate-y-2 hover:scale-[1.02]",
+        className
+      )}
+    >
+      {/* Clickable Image Area */}
+      <Link to={`/projects/${slug}`} className="block">
+        <div className="relative aspect-video overflow-hidden">
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-115"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+          
+          {/* Play button overlay */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
+            <div className="p-4 rounded-full bg-primary/90 text-primary-foreground transform scale-50 group-hover:scale-100 transition-all duration-500 ease-out shadow-lg shadow-primary/30">
+              <Play className="w-8 h-8" fill="currentColor" />
+            </div>
+          </div>
+
+          {/* Film frame lines */}
+          <div className="absolute top-4 left-4 right-4 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="text-xs font-mono text-foreground/70">SCENE_01</div>
+            <div className="text-xs font-mono text-foreground/70">TAKE_01</div>
           </div>
         </div>
-
-        {/* Film frame lines */}
-        <div className="absolute top-4 left-4 right-4 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity">
-          <div className="text-xs font-mono text-foreground/70">SCENE_01</div>
-          <div className="text-xs font-mono text-foreground/70">TAKE_01</div>
-        </div>
-      </div>
+      </Link>
 
       {/* Content */}
       <div className="p-6">
-        <h3 className="font-display text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
-          {title}
-        </h3>
+        <Link to={`/projects/${slug}`}>
+          <h3 className="font-display text-xl font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+            {title}
+          </h3>
+        </Link>
         <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
           {description}
         </p>
@@ -77,19 +87,17 @@ const ProjectCard = ({
 
         {/* Actions */}
         <div className="flex gap-3">
-          {liveUrl && (
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex-1 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground"
-              asChild
-            >
-              <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-                <ExternalLink className="w-4 h-4 mr-2" />
-                Voir
-              </a>
-            </Button>
-          )}
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex-1 border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground"
+            asChild
+          >
+            <Link to={`/projects/${slug}`}>
+              <ExternalLink className="w-4 h-4 mr-2" />
+              {language === "fr" ? "Détails" : "Details"}
+            </Link>
+          </Button>
           {githubUrl && (
             <Button
               variant="outline"
