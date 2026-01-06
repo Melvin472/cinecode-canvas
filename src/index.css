@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -26,10 +26,10 @@
     --secondary-foreground: 45 30% 96%;
 
     --muted: 240 8% 15%;
-    --muted-foreground: 240 5% 55%;
+    --muted-foreground: 220 10% 70%;
 
-    /* Cinema red accent */
-    --accent: 0 70% 50%;
+    /* Teal accent - better contrast */
+    --accent: 175 70% 45%;
     --accent-foreground: 45 30% 96%;
 
     --destructive: 0 84.2% 60.2%;
@@ -72,8 +72,8 @@
     --secondary: 45 10% 92%;
     --secondary-foreground: 240 10% 10%;
     --muted: 45 10% 90%;
-    --muted-foreground: 240 5% 40%;
-    --accent: 0 70% 50%;
+    --muted-foreground: 220 15% 35%;
+    --accent: 175 70% 35%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -108,8 +108,8 @@
     --secondary: 240 8% 12%;
     --secondary-foreground: 45 30% 96%;
     --muted: 240 8% 15%;
-    --muted-foreground: 240 5% 55%;
-    --accent: 0 70% 50%;
+    --muted-foreground: 220 10% 70%;
+    --accent: 175 70% 45%;
     --accent-foreground: 45 30% 96%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;

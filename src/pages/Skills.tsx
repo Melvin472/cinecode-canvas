@@ -22,6 +22,15 @@ const Skills = () => {
 
   const selectedGroup = competencyGroups.find((g) => g.id === activeGroup);
 
+  // Group projects by level
+  const getProjectsByLevel = (group: CompetencyGroup) => {
+    const levels: { [key: number]: typeof group.projects } = {};
+    for (let i = 1; i <= group.maxLevels; i++) {
+      levels[i] = group.projects.filter((p) => p.level === i);
+    }
+    return levels;
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -68,7 +77,7 @@ const Skills = () => {
         </div>
       </section>
 
-      {/* Projects & Skills Display */}
+      {/* Projects & Skills Display by Level */}
       <AnimatePresence mode="wait">
         {selectedGroup && (
           <motion.section
@@ -84,7 +93,7 @@ const Skills = () => {
                 <selectedGroup.icon
                   className={`w-8 h-8 ${selectedGroup.color}`}
                 />
-                <h3 className="font-display text-2xl font-semibold text-foreground">
+                <h3 className="font-sans text-2xl font-semibold text-foreground">
                   {language === "fr"
                     ? "Projets & Compétences"
                     : "Projects & Skills"}
@@ -93,22 +102,53 @@ const Skills = () => {
                 </h3>
               </div>
 
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {selectedGroup.projects.map((project, index) => (
-                  <motion.div
-                    key={project.slug}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <ProjectSkillsCard
-                      slug={project.slug}
-                      title={project.title[language]}
-                      image={project.image}
-                      skills={project.skills}
-                    />
-                  </motion.div>
-                ))}
+              {/* Display by levels */}
+              <div className="space-y-10">
+                {Object.entries(getProjectsByLevel(selectedGroup)).map(
+                  ([levelNum, projects]) => {
+                    if (projects.length === 0) return null;
+                    const levelIndex = parseInt(levelNum) - 1;
+                    const levelLabel =
+                      selectedGroup.levelLabels[language][levelIndex];
+
+                    return (
+                      <motion.div
+                        key={levelNum}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: levelIndex * 0.15 }}
+                      >
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="h-px flex-1 bg-border" />
+                          <span className="font-sans text-lg font-medium text-foreground px-4 py-1 bg-secondary rounded-full">
+                            {levelLabel}
+                          </span>
+                          <div className="h-px flex-1 bg-border" />
+                        </div>
+
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                          {projects.map((project, index) => (
+                            <motion.div
+                              key={project.slug}
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{
+                                delay: levelIndex * 0.15 + index * 0.1,
+                              }}
+                            >
+                              <ProjectSkillsCard
+                                slug={project.slug}
+                                title={project.title[language]}
+                                image={project.image}
+                                skills={project.skills}
+                              />
+                            </motion.div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    );
+                  }
+                )}
               </div>
             </div>
           </motion.section>
@@ -134,7 +174,7 @@ const Skills = () => {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <blockquote className="max-w-2xl mx-auto text-center">
-            <p className="font-display text-xl md:text-2xl italic text-foreground mb-4">
+            <p className="font-sans text-xl md:text-2xl italic text-foreground mb-4">
               "Le cinéma, c'est l'écriture moderne dont l'encre est la lumière."
             </p>
             <cite className="font-mono text-sm text-primary">
