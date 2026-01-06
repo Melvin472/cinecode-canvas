@@ -43,7 +43,7 @@ const CompetencyGroupCard = ({
         </div>
         <div className="flex-1">
           <div className="flex items-center justify-between mb-1">
-            <h3 className="font-display text-xl font-semibold text-foreground">
+            <h3 className="font-sans text-xl font-semibold text-foreground">
               {title}
             </h3>
             <span className={cn(

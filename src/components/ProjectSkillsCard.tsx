@@ -34,7 +34,7 @@ const ProjectSkillsCard = ({
         </div>
         <div className="absolute bottom-0 left-0 right-0 p-4">
           <div className="flex items-center justify-between">
-            <h4 className="font-display text-lg font-semibold text-foreground">
+            <h4 className="font-sans text-lg font-semibold text-foreground">
               {title}
             </h4>
             <ExternalLink className="w-4 h-4 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
