@@ -6,8 +6,15 @@ import Footer from "@/components/Footer";
 import CompetencyGroupCard from "@/components/CompetencyGroupCard";
 import ProjectSkillsCard from "@/components/ProjectSkillsCard";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { competencyGroups } from "@/data/competencyGroups";
+import { competencyGroups, CompetencyGroup } from "@/data/competencyGroups";
 import { motion, AnimatePresence } from "framer-motion";
+
+const calculateGroupAverage = (group: CompetencyGroup): number => {
+  const allSkills = group.projects.flatMap((p) => p.skills);
+  if (allSkills.length === 0) return 0;
+  const total = allSkills.reduce((sum, skill) => sum + skill.level, 0);
+  return Math.round(total / allSkills.length);
+};
 
 const Skills = () => {
   const { t, language } = useLanguage();
@@ -50,6 +57,7 @@ const Skills = () => {
                   icon={group.icon}
                   color={group.color}
                   isActive={activeGroup === group.id}
+                  averageLevel={calculateGroupAverage(group)}
                   onClick={() =>
                     setActiveGroup(activeGroup === group.id ? null : group.id)
                   }

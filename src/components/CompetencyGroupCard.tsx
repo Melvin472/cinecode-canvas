@@ -7,6 +7,7 @@ interface CompetencyGroupCardProps {
   icon: LucideIcon;
   color: string;
   isActive: boolean;
+  averageLevel: number;
   onClick: () => void;
 }
 
@@ -16,6 +17,7 @@ const CompetencyGroupCard = ({
   icon: Icon,
   color,
   isActive,
+  averageLevel,
   onClick,
 }: CompetencyGroupCardProps) => {
   return (
@@ -40,9 +42,17 @@ const CompetencyGroupCard = ({
           <Icon className={cn("w-6 h-6", isActive && "text-primary-foreground")} />
         </div>
         <div className="flex-1">
-          <h3 className="font-display text-xl font-semibold text-foreground mb-1">
-            {title}
-          </h3>
+          <div className="flex items-center justify-between mb-1">
+            <h3 className="font-display text-xl font-semibold text-foreground">
+              {title}
+            </h3>
+            <span className={cn(
+              "font-mono text-lg font-bold",
+              isActive ? "text-primary" : "text-muted-foreground"
+            )}>
+              {averageLevel}%
+            </span>
+          </div>
           <p className="text-sm text-muted-foreground">{description}</p>
         </div>
       </div>
