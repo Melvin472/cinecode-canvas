@@ -1,141 +1,19 @@
-import {
-  Code,
-  Cpu,
-  Smartphone,
-  Gamepad2,
-  Bluetooth,
-  CircuitBoard,
-  Cog,
-  Sparkles,
-  Lightbulb,
-  Users,
-  Target,
-  Clock,
-  Brain,
-  MessageCircle,
-} from "lucide-react";
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import SectionTitle from "@/components/SectionTitle";
-import SkillCard from "@/components/SkillCard";
 import FilmStrip from "@/components/FilmStrip";
 import Footer from "@/components/Footer";
+import CompetencyGroupCard from "@/components/CompetencyGroupCard";
+import ProjectSkillsCard from "@/components/ProjectSkillsCard";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { competencyGroups } from "@/data/competencyGroups";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Skills = () => {
   const { t, language } = useLanguage();
+  const [activeGroup, setActiveGroup] = useState<string | null>(null);
 
-  const programmingSkills = [
-    {
-      icon: Code,
-      title: "React & JavaScript",
-      description: language === "fr" 
-        ? "Développement d'applications mobiles et web (Beatmoji)"
-        : "Mobile and web application development (Beatmoji)",
-      level: 85,
-    },
-    {
-      icon: Cpu,
-      title: "Python",
-      description: language === "fr"
-        ? "Programmation robotique et asservissement PID"
-        : "Robotic programming and PID control",
-      level: 90,
-    },
-    {
-      icon: Gamepad2,
-      title: "C++ & Unreal Engine",
-      description: language === "fr"
-        ? "Développement de jeux vidéo et environnements 3D"
-        : "Video game development and 3D environments",
-      level: 75,
-    },
-    {
-      icon: Smartphone,
-      title: "React Native",
-      description: language === "fr"
-        ? "Applications mobiles iOS/Android"
-        : "iOS/Android mobile applications",
-      level: 80,
-    },
-  ];
-
-  const electronicsSkills = [
-    {
-      icon: CircuitBoard,
-      title: "KICAD",
-      description: language === "fr"
-        ? "Conception de cartes électroniques (RTK GNSS)"
-        : "Electronic board design (RTK GNSS)",
-      level: 85,
-    },
-    {
-      icon: Bluetooth,
-      title: language === "fr" ? "Bluetooth & Capteurs" : "Bluetooth & Sensors",
-      description: language === "fr"
-        ? "Communication sans fil et acquisition de données"
-        : "Wireless communication and data acquisition",
-      level: 80,
-    },
-    {
-      icon: Cog,
-      title: language === "fr" ? "Robotique & PID" : "Robotics & PID",
-      description: language === "fr"
-        ? "Asservissement et contrôle de robots autonomes"
-        : "Control and automation of autonomous robots",
-      level: 90,
-    },
-  ];
-
-  const softSkills = [
-    {
-      icon: Lightbulb,
-      title: language === "fr" ? "Créativité" : "Creativity",
-      description: language === "fr"
-        ? "Capacité à innover et proposer des solutions originales"
-        : "Ability to innovate and propose original solutions",
-      level: 90,
-    },
-    {
-      icon: Users,
-      title: language === "fr" ? "Travail d'équipe" : "Teamwork",
-      description: language === "fr"
-        ? "Collaboration efficace et partage des connaissances"
-        : "Effective collaboration and knowledge sharing",
-      level: 85,
-    },
-    {
-      icon: Target,
-      title: language === "fr" ? "Résolution de problèmes" : "Problem Solving",
-      description: language === "fr"
-        ? "Analyse et résolution méthodique des défis techniques"
-        : "Methodical analysis and resolution of technical challenges",
-      level: 88,
-    },
-    {
-      icon: Clock,
-      title: language === "fr" ? "Gestion du temps" : "Time Management",
-      description: language === "fr"
-        ? "Organisation et respect des délais de projet"
-        : "Organization and meeting project deadlines",
-      level: 82,
-    },
-    {
-      icon: Brain,
-      title: language === "fr" ? "Adaptabilité" : "Adaptability",
-      description: language === "fr"
-        ? "Apprentissage rapide de nouvelles technologies"
-        : "Quick learning of new technologies",
-      level: 90,
-    },
-    {
-      icon: MessageCircle,
-      title: "Communication",
-      description: language === "fr"
-        ? "Expression claire des idées techniques et non-techniques"
-        : "Clear expression of technical and non-technical ideas",
-      level: 85,
-    },
-  ];
+  const selectedGroup = competencyGroups.find((g) => g.id === activeGroup);
 
   return (
     <div className="min-h-screen bg-background">
@@ -147,73 +25,102 @@ const Skills = () => {
         <div className="container mx-auto px-6">
           <SectionTitle
             title={t.skills.title}
-            subtitle={language === "fr" ? "Les outils de ma palette créative" : "The tools of my creative palette"}
+            subtitle={
+              language === "fr"
+                ? "Les outils de ma palette créative"
+                : "The tools of my creative palette"
+            }
           />
         </div>
       </section>
 
-      {/* Programming Skills */}
+      {/* Competency Groups */}
       <section className="py-16">
         <div className="container mx-auto px-6">
-          <h3 className="font-display text-2xl font-semibold text-foreground mb-8 flex items-center gap-3">
-            <Code className="w-6 h-6 text-code-green" />
-            {t.skills.programming}
-          </h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            {programmingSkills.map((skill, index) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {competencyGroups.map((group, index) => (
               <div
-                key={skill.title}
+                key={group.id}
                 className="animate-fade-up"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <SkillCard {...skill} />
+                <CompetencyGroupCard
+                  title={group.title[language]}
+                  description={group.description[language]}
+                  icon={group.icon}
+                  color={group.color}
+                  isActive={activeGroup === group.id}
+                  onClick={() =>
+                    setActiveGroup(activeGroup === group.id ? null : group.id)
+                  }
+                />
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Electronics Skills */}
-      <section className="py-16 bg-card/30">
-        <div className="container mx-auto px-6">
-          <h3 className="font-display text-2xl font-semibold text-foreground mb-8 flex items-center gap-3">
-            <CircuitBoard className="w-6 h-6 text-primary" />
-            {t.skills.electronics}
-          </h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            {electronicsSkills.map((skill, index) => (
-              <div
-                key={skill.title}
-                className="animate-fade-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <SkillCard {...skill} />
+      {/* Projects & Skills Display */}
+      <AnimatePresence mode="wait">
+        {selectedGroup && (
+          <motion.section
+            key={selectedGroup.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="pb-16"
+          >
+            <div className="container mx-auto px-6">
+              <div className="flex items-center gap-3 mb-8">
+                <selectedGroup.icon
+                  className={`w-8 h-8 ${selectedGroup.color}`}
+                />
+                <h3 className="font-display text-2xl font-semibold text-foreground">
+                  {language === "fr"
+                    ? "Projets & Compétences"
+                    : "Projects & Skills"}
+                  {" - "}
+                  {selectedGroup.title[language]}
+                </h3>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Soft Skills */}
-      <section className="py-16">
-        <div className="container mx-auto px-6">
-          <h3 className="font-display text-2xl font-semibold text-foreground mb-8 flex items-center gap-3">
-            <Sparkles className="w-6 h-6 text-cinema-red" />
-            {t.skills.softSkills}
-          </h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {softSkills.map((skill, index) => (
-              <div
-                key={skill.title}
-                className="animate-fade-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <SkillCard {...skill} />
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {selectedGroup.projects.map((project, index) => (
+                  <motion.div
+                    key={project.slug}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <ProjectSkillsCard
+                      slug={project.slug}
+                      title={project.title[language]}
+                      image={project.image}
+                      skills={project.skills}
+                    />
+                  </motion.div>
+                ))}
               </div>
-            ))}
+            </div>
+          </motion.section>
+        )}
+      </AnimatePresence>
+
+      {/* Empty State */}
+      {!selectedGroup && (
+        <section className="pb-16">
+          <div className="container mx-auto px-6">
+            <div className="text-center py-12 text-muted-foreground">
+              <p className="text-lg">
+                {language === "fr"
+                  ? "Cliquez sur un groupe de compétences pour voir les projets associés"
+                  : "Click on a competency group to see related projects"}
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Quote */}
       <section className="py-20">
@@ -222,7 +129,9 @@ const Skills = () => {
             <p className="font-display text-xl md:text-2xl italic text-foreground mb-4">
               "Le cinéma, c'est l'écriture moderne dont l'encre est la lumière."
             </p>
-            <cite className="font-mono text-sm text-primary">— Jean Cocteau</cite>
+            <cite className="font-mono text-sm text-primary">
+              — Jean Cocteau
+            </cite>
           </blockquote>
         </div>
       </section>
