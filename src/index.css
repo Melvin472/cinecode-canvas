@@ -26,7 +26,7 @@
     --secondary-foreground: 45 30% 96%;
 
     --muted: 240 8% 15%;
-    --muted-foreground: 220 10% 70%;
+    --muted-foreground: 220 10% 90%;
 
     /* Teal accent - better contrast */
     --accent: 175 70% 45%;
@@ -72,7 +72,7 @@
     --secondary: 45 10% 92%;
     --secondary-foreground: 240 10% 10%;
     --muted: 45 10% 90%;
-    --muted-foreground: 220 15% 35%;
+    --muted-foreground: 220 15% 10%;
     --accent: 175 70% 35%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
@@ -108,7 +108,7 @@
     --secondary: 240 8% 12%;
     --secondary-foreground: 45 30% 96%;
     --muted: 240 8% 15%;
-    --muted-foreground: 220 10% 70%;
+    --muted-foreground: 220 10% 90%;
     --accent: 175 70% 45%;
     --accent-foreground: 45 30% 96%;
     --destructive: 0 63% 31%;

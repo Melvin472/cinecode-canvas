@@ -141,6 +141,7 @@ const Skills = () => {
                                 title={project.title[language]}
                                 image={project.image}
                                 skills={project.skills}
+                                justification={project.justification[language]}
                               />
                             </motion.div>
                           ))}

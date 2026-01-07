@@ -12,6 +12,7 @@ interface ProjectSkillsCardProps {
   title: string;
   image: string;
   skills: Skill[];
+  justification?: string;
 }
 
 const ProjectSkillsCard = ({
@@ -19,6 +20,7 @@ const ProjectSkillsCard = ({
   title,
   image,
   skills,
+  justification,
 }: ProjectSkillsCardProps) => {
   return (
     <div className="group bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-primary/30">
@@ -53,6 +55,15 @@ const ProjectSkillsCard = ({
             <Progress value={skill.level} className="h-2" />
           </div>
         ))}
+        
+        {/* Justification */}
+        {justification && (
+          <div className="mt-4 pt-3 border-t border-border">
+            <p className="text-sm text-muted-foreground italic leading-relaxed">
+              {justification}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
