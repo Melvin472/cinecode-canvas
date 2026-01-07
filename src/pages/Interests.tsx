@@ -26,6 +26,14 @@ const Interests = () => {
       tags: [language === "fr" ? "Films" : "Films", language === "fr" ? "Cinématographie" : "Cinematography", language === "fr" ? "Réalisation" : "Directing"],
     },
     {
+      title: language === "fr" ? "Théâtre" : "Theater",
+      description: language === "fr"
+        ? "Passionné par l'art dramatique et la scène. L'expression corporelle et vocale comme moyens de raconter des histoires captivantes."
+        : "Passionate about dramatic art and the stage. Body and vocal expression as means of telling captivating stories.",
+      image: "https://images.unsplash.com/photo-1503095396549-807759245b35?w=800&q=80",
+      tags: [language === "fr" ? "Comédie" : "Comedy", language === "fr" ? "Expression" : "Expression", language === "fr" ? "Scène" : "Stage"],
+    },
+    {
       title: language === "fr" ? "Lecture" : "Reading",
       description: language === "fr"
         ? "Fan de romans policiers et de science-fiction. Exploration de mondes imaginaires à travers les pages."
@@ -46,7 +54,7 @@ const Interests = () => {
       description: language === "fr"
         ? "En quête permanente de nouvelles passions et expériences. Curiosité sans limites pour explorer le monde."
         : "Always seeking new passions and experiences. Boundless curiosity to explore the world.",
-      image: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&q=80",
+      image: "https://images.unsplash.com/photo-504384308090-c894fdcc538d?w=800&q=80",
       tags: ["Exploration", language === "fr" ? "Curiosité" : "Curiosity", language === "fr" ? "Aventure" : "Adventure"],
     },
   ];
