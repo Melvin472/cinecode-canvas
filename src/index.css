@@ -17,8 +17,8 @@
     --popover: 240 10% 6%;
     --popover-foreground: 45 30% 96%;
 
-    /* Gold accent - cinema lights */
-    --primary: 45 90% 55%;
+    /* Gold accent - cinema lights - brighter for visibility */
+    --primary: 45 95% 65%;
     --primary-foreground: 240 10% 4%;
 
     /* Dark secondary */
@@ -28,8 +28,8 @@
     --muted: 240 8% 15%;
     --muted-foreground: 220 10% 90%;
 
-    /* Teal accent - better contrast */
-    --accent: 175 70% 45%;
+    /* Teal accent - brighter for visibility */
+    --accent: 175 80% 55%;
     --accent-foreground: 45 30% 96%;
 
     --destructive: 0 84.2% 60.2%;
@@ -41,13 +41,13 @@
 
     --radius: 0.5rem;
 
-    /* Custom cinema variables */
-    --gold: 45 90% 55%;
-    --gold-dim: 45 70% 35%;
-    --cinema-red: 0 70% 45%;
+    /* Custom cinema variables - brighter colors */
+    --gold: 45 95% 65%;
+    --gold-dim: 45 80% 45%;
+    --cinema-red: 0 80% 60%;
     --film-grain: 240 10% 8%;
-    --spotlight: 45 100% 70%;
-    --code-green: 150 60% 50%;
+    --spotlight: 45 100% 75%;
+    --code-green: 150 70% 60%;
 
     --sidebar-background: 240 10% 6%;
     --sidebar-foreground: 45 30% 96%;
@@ -67,13 +67,13 @@
     --card-foreground: 240 10% 10%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 10%;
-    --primary: 45 90% 40%;
+    --primary: 45 95% 45%;
     --primary-foreground: 0 0% 100%;
     --secondary: 45 10% 92%;
     --secondary-foreground: 240 10% 10%;
     --muted: 45 10% 90%;
     --muted-foreground: 220 15% 10%;
-    --accent: 175 70% 35%;
+    --accent: 175 80% 40%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
@@ -103,13 +103,13 @@
     --card-foreground: 45 30% 96%;
     --popover: 240 10% 6%;
     --popover-foreground: 45 30% 96%;
-    --primary: 45 90% 55%;
+    --primary: 45 95% 65%;
     --primary-foreground: 240 10% 4%;
     --secondary: 240 8% 12%;
     --secondary-foreground: 45 30% 96%;
     --muted: 240 8% 15%;
     --muted-foreground: 220 10% 90%;
-    --accent: 175 70% 45%;
+    --accent: 175 80% 55%;
     --accent-foreground: 45 30% 96%;
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
