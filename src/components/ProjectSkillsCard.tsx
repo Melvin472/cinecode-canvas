@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Progress } from "@/components/ui/progress";
 import { ExternalLink } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
 
 interface Skill {
   name: string;
@@ -22,8 +23,29 @@ const ProjectSkillsCard = ({
   skills,
   justification,
 }: ProjectSkillsCardProps) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="group bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-primary/30">
+    <div ref={cardRef} className="group bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-primary/30">
       {/* Project Header */}
       <Link to={`/projects/${slug}`} className="block relative">
         <div className="aspect-video overflow-hidden">
@@ -46,13 +68,13 @@ const ProjectSkillsCard = ({
 
       {/* Skills */}
       <div className="p-4 space-y-3">
-        {skills.map((skill) => (
-          <div key={skill.name} className="space-y-1">
+        {skills.map((skill, index) => (
+          <div key={skill.name} className="space-y-1" style={{ transitionDelay: `${index * 150}ms` }}>
             <div className="flex items-center justify-between text-sm">
               <span className="text-foreground font-medium">{skill.name}</span>
               <span className="text-primary font-mono">{skill.level}%</span>
             </div>
-            <Progress value={skill.level} className="h-2" />
+            <Progress value={isVisible ? skill.level : 0} animated={isVisible} className="h-2" />
           </div>
         ))}
         
