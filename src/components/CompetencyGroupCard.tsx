@@ -1,4 +1,5 @@
 import { LucideIcon } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 
 interface CompetencyGroupCardProps {
@@ -9,6 +10,8 @@ interface CompetencyGroupCardProps {
   isActive: boolean;
   averageLevel: number;
   onClick: () => void;
+  groupId?: string;
+  linkToAllSkills?: boolean;
 }
 
 const CompetencyGroupCard = ({
@@ -19,16 +22,29 @@ const CompetencyGroupCard = ({
   isActive,
   averageLevel,
   onClick,
+  groupId,
+  linkToAllSkills = false,
 }: CompetencyGroupCardProps) => {
+  const navigate = useNavigate();
+  
+  const handleClick = () => {
+    if (linkToAllSkills) {
+      navigate("/skills/all");
+    } else {
+      onClick();
+    }
+  };
+
   return (
     <button
-      onClick={onClick}
+      onClick={handleClick}
       className={cn(
         "group relative w-full p-6 rounded-xl border-2 transition-all duration-300 text-left",
         "hover:scale-[1.02] hover:shadow-xl",
         isActive
           ? "border-primary bg-primary/10 shadow-lg"
-          : "border-border bg-card hover:border-primary/50"
+          : "border-border bg-card hover:border-primary/50",
+        linkToAllSkills && "hover:border-accent hover:bg-accent/5"
       )}
     >
       <div className="flex items-start gap-4">
@@ -54,6 +70,11 @@ const CompetencyGroupCard = ({
             </span>
           </div>
           <p className="text-sm text-muted-foreground">{description}</p>
+          {linkToAllSkills && (
+            <p className="text-xs text-accent mt-2 opacity-0 group-hover:opacity-100 transition-opacity">
+              Cliquez pour voir toutes les compétences →
+            </p>
+          )}
         </div>
       </div>
       

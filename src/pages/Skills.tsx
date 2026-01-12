@@ -53,26 +53,34 @@ const Skills = () => {
       {/* Competency Groups */}
       <section className="py-16">
         <div className="container mx-auto px-6">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {competencyGroups.map((group, index) => (
-              <div
-                key={group.id}
-                className="animate-fade-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <CompetencyGroupCard
-                  title={group.title[language]}
-                  description={group.description[language]}
-                  icon={group.icon}
-                  color={group.color}
-                  isActive={activeGroup === group.id}
-                  averageLevel={calculateGroupAverage(group)}
-                  onClick={() =>
-                    setActiveGroup(activeGroup === group.id ? null : group.id)
-                  }
-                />
-              </div>
-            ))}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {competencyGroups.map((group, index) => {
+              const isPalettesCreatives = group.id === "palettes-creatives";
+              const isTechSoftSkills = group.projects.some(p => p.slug === "competences-globales");
+              const shouldLinkToAllSkills = isPalettesCreatives;
+              
+              return (
+                <div
+                  key={group.id}
+                  className="animate-fade-up"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <CompetencyGroupCard
+                    title={group.title[language]}
+                    description={group.description[language]}
+                    icon={group.icon}
+                    color={group.color}
+                    isActive={activeGroup === group.id}
+                    averageLevel={calculateGroupAverage(group)}
+                    groupId={group.id}
+                    linkToAllSkills={shouldLinkToAllSkills}
+                    onClick={() =>
+                      setActiveGroup(activeGroup === group.id ? null : group.id)
+                    }
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
