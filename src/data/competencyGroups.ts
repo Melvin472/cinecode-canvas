@@ -1,4 +1,4 @@
-import { LucideIcon, Lightbulb, Search, Settings, Puzzle } from "lucide-react";
+import { LucideIcon, Lightbulb, Search, Settings, Puzzle, Palette } from "lucide-react";
 
 export interface Skill {
   name: string;
@@ -333,6 +333,76 @@ export const competencyGroups: CompetencyGroup[] = [
         justification: {
           fr: "En stage, j'ai interagi avec différents acteurs (tuteur, équipe technique) pour implanter le système. L'intégration capteurs à 88% et RTK GNSS à 82% reflètent ma capacité à collaborer efficacement dans une démarche qualité complète.",
           en: "During my internship, I interacted with different stakeholders (tutor, technical team) to implement the system. Sensor integration at 88% and RTK GNSS at 82% reflect my ability to collaborate effectively in a complete quality approach.",
+        },
+      },
+    ],
+  },
+  {
+    id: "palettes-creatives",
+    title: {
+      fr: "Palettes créatives",
+      en: "Creative Palettes",
+    },
+    description: {
+      fr: "Expression technique, humaine et artistique",
+      en: "Technical, human, and artistic expression",
+    },
+    icon: Palette, // Icône plus adaptée
+    color: "text-red-500", // Couleur distincte
+    maxLevels: 2,
+    levelLabels: {
+      fr: [
+        "Niveau 1 : Maîtrise des outils techniques et compétences transversales",
+        "Niveau 2 : Expression artistique et réalisation audiovisuelle"
+      ],
+      en: [
+        "Level 1: Mastery of technical tools and transversal skills",
+        "Level 2: Artistic expression and audiovisual realization"
+      ],
+    },
+    projects: [
+      {
+        slug: "competences-globales",
+        title: {
+          fr: "Tech & Soft Skills",
+          en: "Tech & Soft Skills",
+        },
+        // Image générique représentant le code ou le travail d'équipe
+        image: "/image/skills-mix.png", 
+        level: 1,
+        skills: [
+          // Hard Skills (Récapitulatif)
+          { name: "C++ / Python", level: 90 },
+          { name: "React / Web", level: 85 },
+          // Soft Skills
+          { name: "Travail d'équipe", level: 100 },
+          { name: "Créativité", level: 95 },
+          { name: "Adaptabilité", level: 90 },
+        ],
+        justification: {
+          fr: "Synthèse de mes compétences techniques transverses utilisées sur l'ensemble de mes projets, alliées à mes qualités humaines (Soft Skills) essentielles pour la gestion de projet et l'innovation.",
+          en: "Synthesis of my transverse technical skills used across all projects, combined with my human qualities (Soft Skills) essential for project management and innovation.",
+        },
+      },
+      {
+        slug: "cinema-audiovisuel",
+        title: {
+          fr: "Réalisation & Cinéma",
+          en: "Filmmaking & Cinema",
+        },
+        // C'est ici que tu mettras une image de couverture de tes tournages
+        image: "/image/cinema-cover.png", 
+        level: 2,
+        skills: [
+          { name: "Gestion de l'éclairage", level: 85 },
+          { name: "Cadrage", level: 90 },
+          { name: "Écriture", level: 80 },
+          { name: "Comédie", level: 75 },
+          { name: "Direction photo", level: 82 },
+        ],
+        justification: {
+          fr: "Portfolio dédié à ma passion pour l'image. Ce projet regroupe mes travaux sur la gestion de la lumière, la composition de plans et la post-production. (Cliquez pour voir la galerie photo)",
+          en: "Portfolio dedicated to my passion for visuals. This project gathers my work on light management, shot composition, and post-production. (Click to view photo gallery)",
         },
       },
     ],

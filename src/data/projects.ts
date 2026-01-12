@@ -109,7 +109,7 @@ export const projects: Project[] = [
         "Multiple sensor integration",
       ],
     },
-    year: "2024",
+    year: "2025",
     role: {
       fr: "Stagiaire Ingénieur",
       en: "Engineering Intern",
@@ -151,7 +151,7 @@ export const projects: Project[] = [
         "Streaming service integration",
       ],
     },
-    year: "2024",
+    year: "2025",
     role: {
       fr: "Développeur Full-Stack",
       en: "Full-Stack Developer",
@@ -193,7 +193,7 @@ export const projects: Project[] = [
         "Customizable alerts",
       ],
     },
-    year: "2023",
+    year: "2025-2026",
     role: {
       fr: "Développeur IoT & Mobile",
       en: "IoT & Mobile Developer",
@@ -277,10 +277,95 @@ export const projects: Project[] = [
         "Stylized pixel art",
       ],
     },
-    year: "2024",
+    year: "2025",
     role: {
       fr: "Game Designer & Développeur",
       en: "Game Designer & Developer",
+    },
+  },
+  {
+    slug: "theatre-comedien",
+    title: {
+      fr: "Représentation Théâtrale",
+      en: "Theater Performance",
+    },
+    description: {
+      fr: "Participation à une pièce de théâtre en tant que comédien. Développement des compétences oratoires, gestion du stress et travail d'équipe sur scène.",
+      en: "Participation in a play as an actor. Development of public speaking skills, stress management, and teamwork on stage.",
+    },
+    longDescription: {
+      fr: "Au-delà de la performance artistique, ce projet m'a permis de développer des 'soft skills' essentielles. L'interprétation d'un rôle demande une grande capacité d'adaptation, une mémorisation rigoureuse et une écoute active des partenaires de jeu. La gestion du trac et la prise de parole en public sont des compétences transversales que j'ai pu affiner lors des représentations devant un public réel.",
+      en: "Beyond the artistic performance, this project allowed me to develop essential soft skills. Interpreting a role requires great adaptability, rigorous memorization, and active listening to partners. Managing stage fright and public speaking are transversal skills that I refined during performances in front of a live audience.",
+    },
+    image: "/image/spectacle.png", 
+    tags: {
+      fr: ["Soft Skills", "Prise de parole", "Art", "Travail d'équipe"],
+      en: ["Soft Skills", "Public Speaking", "Art", "Teamwork"],
+    },
+    // Pas de lien GitHub pour du théâtre, c'est logique
+    features: {
+      fr: [
+        "Interprétation et jeu d'acteur",
+        "Gestion du stress et aisance scénique",
+        "Mémorisation et rigueur",
+        "Travail de la voix et de la posture",
+        "Collaboration artistique",
+      ],
+      en: [
+        "Acting and interpretation",
+        "Stress management and stage presence",
+        "Memorization and rigor",
+        "Voice and posture training",
+        "Artistic collaboration",
+      ],
+    },
+    year: "2024",
+    role: {
+      fr: "Comédien",
+      en: "Actor",
+    },
+  },
+  {
+    slug: "portfolio-photographie",
+    title: {
+      fr: "Portfolio Photographie",
+      en: "Photography Portfolio",
+    },
+    description: {
+      fr: "Projet artistique explorant la composition, la gestion de la lumière et la retouche photo. Mise en valeur de sujets variés à travers un objectif technique et créatif.",
+      en: "Artistic project exploring composition, light management, and photo editing. Highlighting various subjects through a technical and creative lens.",
+    },
+    longDescription: {
+      fr: "La photographie est pour moi un moyen d'allier technique et créativité. Ce projet regroupe une série de clichés où j'ai travaillé sur la maîtrise de l'exposition, la profondeur de champ et le cadrage. J'utilise également des outils de post-traitement comme Lightroom pour sublimer les couleurs et raconter une histoire à travers l'image.  C'est une compétence complémentaire à mon profil technique, démontrant mon sens du détail et de l'esthétique.",
+      en: "Photography is a way for me to combine technique and creativity. This project gathers a series of shots where I worked on mastering exposure, depth of field, and framing. I also use post-processing tools like Lightroom to enhance colors and tell a story through the image.  It is a complementary skill to my technical profile, demonstrating my eye for detail and aesthetics.",
+    },
+    image: "/image/photo_portfolio.png", // Pense à mettre ton image ici
+    tags: {
+      fr: ["Photographie", "Lightroom", "Direction Artistique", "Créativité"],
+      en: ["Photography", "Lightroom", "Art Direction", "Creativity"],
+    },
+    // Tu pourras mettre un lien vers une galerie Flickr ou Instagram si tu veux
+    liveUrl: "https://ton-lien-vers-galerie.com", 
+    features: {
+      fr: [
+        "Maîtrise de l'exposition et de la lumière",
+        "Composition et cadrage",
+        "Post-traitement (Color Grading)",
+        "Narration visuelle",
+        "Gestion technique du matériel",
+      ],
+      en: [
+        "Exposure and light mastery",
+        "Composition and framing",
+        "Post-processing (Color Grading)",
+        "Visual storytelling",
+        "Technical equipment management",
+      ],
+    },
+    year: "2024",
+    role: {
+      fr: "Photographe & Éditeur",
+      en: "Photographer & Editor",
     },
   },
 ];
