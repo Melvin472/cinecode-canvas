@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import SectionTitle from "@/components/SectionTitle";
 import FilmStrip from "@/components/FilmStrip";
@@ -9,8 +9,17 @@ import { competencyGroups } from "@/data/competencyGroups";
 import { motion, AnimatePresence } from "framer-motion";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { ArrowLeft, Filter, Layers, X } from "lucide-react";
+import { 
+  ArrowLeft, Filter, Layers, X, ExternalLink,
+  Code, Smartphone, Terminal, Cpu, Wifi, Wrench,
+  Gamepad2, Target, Building2, Cog, PcCase, Satellite,
+  TestTube, ClipboardCheck, Bug, Radio, Gauge, GitBranch,
+  FileText, Database, Link2, RefreshCcw, Globe, Server,
+  MessageSquare, Users, Lightbulb, RotateCcw, Sun, Camera,
+  Pencil, Drama, Video, Sparkles, Zap, CircuitBoard, Settings
+} from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { LucideIcon } from "lucide-react";
 
 // Extract all unique skills with their projects
 const extractAllSkills = () => {
@@ -67,64 +76,72 @@ const extractAllProjects = () => {
   return Array.from(projectsMap.values());
 };
 
-// Skill icons mapping
-const getSkillIcon = (skillName: string): string => {
-  const icons: Record<string, string> = {
-    "React": "⚛️",
-    "React Native": "📱",
-    "Python": "🐍",
-    "C++": "💻",
-    "C++ / Python": "💻",
-    "JavaScript": "🟨",
-    "TypeScript": "🔷",
-    "Arduino": "🔌",
-    "Bluetooth BLE": "📶",
-    "KICAD": "🔧",
-    "Unreal Engine": "🎮",
-    "Godot Engine": "🎯",
-    "GDScript": "📝",
-    "Game Design": "🎲",
-    "3D Environments": "🌐",
-    "Architecture système": "🏗️",
-    "Conception mécanique": "⚙️",
-    "Conception PCB": "📟",
-    "Électronique embarquée": "🔋",
-    "Algorithmes PID": "📊",
-    "RTK GNSS": "🛰️",
-    "Tests BLE": "🧪",
-    "Tests unitaires": "✅",
-    "Tests physiques": "🔬",
-    "Validation données": "📋",
-    "Validation système": "🎯",
-    "Debugging": "🐛",
-    "Debugging wireless": "📡",
-    "Calibration capteurs": "🎛️",
-    "Optimisation PID": "📈",
-    "Analyse de performance": "📉",
-    "Version control": "🔀",
-    "Documentation": "📚",
-    "Gestion état": "🗂️",
-    "API integration": "🔗",
-    "Code refactoring": "♻️",
-    "IoT protocols": "🌍",
-    "Intégration capteurs": "🎚️",
-    "Communication série": "🔌",
-    "Firmware": "💾",
-    "Travail d'équipe": "🤝",
-    "Créativité": "💡",
-    "Adaptabilité": "🔄",
-    "Gestion de l'éclairage": "💡",
-    "Cadrage": "🎬",
-    "Écriture": "✍️",
-    "Comédie": "🎭",
-    "Direction photo": "📷",
-    "React / Web": "🌐",
-  };
-  return icons[skillName] || "🔹";
+// Skill icons mapping with Lucide icons
+const skillIconsMap: Record<string, LucideIcon> = {
+  "React": Code,
+  "React Native": Smartphone,
+  "Python": Terminal,
+  "C++": Code,
+  "C++ / Python": Terminal,
+  "JavaScript": Code,
+  "TypeScript": Code,
+  "Arduino": Cpu,
+  "Bluetooth BLE": Wifi,
+  "KICAD": Wrench,
+  "Unreal Engine": Gamepad2,
+  "Godot Engine": Gamepad2,
+  "GDScript": Code,
+  "Game Design": Target,
+  "3D Environments": Globe,
+  "Architecture système": Building2,
+  "Conception mécanique": Cog,
+  "Conception PCB": CircuitBoard,
+  "Électronique embarquée": PcCase,
+  "Algorithmes PID": Gauge,
+  "RTK GNSS": Satellite,
+  "Tests BLE": TestTube,
+  "Tests unitaires": ClipboardCheck,
+  "Tests physiques": TestTube,
+  "Validation données": ClipboardCheck,
+  "Validation système": Target,
+  "Debugging": Bug,
+  "Debugging wireless": Radio,
+  "Calibration capteurs": Settings,
+  "Optimisation PID": Zap,
+  "Analyse de performance": Gauge,
+  "Version control": GitBranch,
+  "Documentation": FileText,
+  "Gestion état": Database,
+  "API integration": Link2,
+  "Code refactoring": RefreshCcw,
+  "IoT protocols": Globe,
+  "Intégration capteurs": Server,
+  "Communication série": MessageSquare,
+  "Firmware": Cpu,
+  "Travail d'équipe": Users,
+  "Créativité": Lightbulb,
+  "Adaptabilité": RotateCcw,
+  "Gestion de l'éclairage": Sun,
+  "Cadrage": Camera,
+  "Écriture": Pencil,
+  "Comédie": Drama,
+  "Direction photo": Video,
+  "React / Web": Globe,
+};
+
+const getSkillIcon = (skillName: string): LucideIcon => {
+  return skillIconsMap[skillName] || Sparkles;
+};
+
+// Check if project has a detail page (exclude special slugs)
+const hasDetailPage = (slug: string): boolean => {
+  const specialSlugs = ["competences-globales", "cinema-audiovisuel"];
+  return !specialSlugs.includes(slug);
 };
 
 const AllSkills = () => {
   const { language } = useLanguage();
+  const navigate = useNavigate();
   const [viewMode, setViewMode] = useState<"skills" | "projects">("skills");
   const [selectedSkills, setSelectedSkills] = useState<string[]>([]);
   const [selectedProjects, setSelectedProjects] = useState<string[]>([]);
@@ -169,6 +186,13 @@ const AllSkills = () => {
   };
   
   const hasFilters = selectedSkills.length > 0 || selectedProjects.length > 0;
+
+  const handleProjectClick = (e: React.MouseEvent, slug: string) => {
+    if (hasDetailPage(slug)) {
+      e.stopPropagation();
+      navigate(`/projects/${slug}`);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -317,6 +341,7 @@ const AllSkills = () => {
                   const avgLevel = Math.round(
                     skill.projects.reduce((sum, p) => sum + p.level, 0) / skill.projects.length
                   );
+                  const SkillIcon = getSkillIcon(skill.name);
                   
                   return (
                     <motion.div
@@ -338,7 +363,9 @@ const AllSkills = () => {
                       <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-primary/30 group-hover:border-primary group-hover:w-4 group-hover:h-4 transition-all duration-300" />
                       
                       <div className="flex items-center gap-3 mb-3">
-                        <span className="text-2xl">{getSkillIcon(skill.name)}</span>
+                        <div className="p-2 rounded-lg bg-primary/10 text-primary">
+                          <SkillIcon className="w-5 h-5" />
+                        </div>
                         <h3 className="font-semibold text-foreground">{skill.name}</h3>
                       </div>
                       
@@ -351,14 +378,26 @@ const AllSkills = () => {
                       
                       <div className="flex flex-wrap gap-1">
                         {skill.projects.slice(0, 3).map(project => (
-                          <img
+                          <Link
                             key={project.slug}
-                            src={project.image}
-                            alt={project.title[language]}
+                            to={hasDetailPage(project.slug) ? `/projects/${project.slug}` : "#"}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              if (!hasDetailPage(project.slug)) e.preventDefault();
+                            }}
+                            className={cn(
+                              "relative group/img",
+                              hasDetailPage(project.slug) && "hover:ring-2 hover:ring-primary rounded"
+                            )}
                             title={project.title[language]}
-                            className="w-6 h-6 rounded object-cover border border-border"
-                            onError={(e) => (e.currentTarget.style.display = 'none')}
-                          />
+                          >
+                            <img
+                              src={project.image}
+                              alt={project.title[language]}
+                              className="w-6 h-6 rounded object-cover border border-border transition-transform group-hover/img:scale-110"
+                              onError={(e) => (e.currentTarget.style.display = 'none')}
+                            />
+                          </Link>
                         ))}
                         {skill.projects.length > 3 && (
                           <span className="text-xs text-muted-foreground flex items-center">
@@ -391,21 +430,24 @@ const AllSkills = () => {
                   {language === "fr" ? "Filtrer par compétence :" : "Filter by skill:"}
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {allSkills.slice(0, 15).map(skill => (
-                    <button
-                      key={skill.name}
-                      onClick={() => toggleSkill(skill.name)}
-                      className={cn(
-                        "flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all duration-200 text-sm",
-                        selectedSkills.includes(skill.name)
-                          ? "border-primary bg-primary/10 text-primary"
-                          : "border-border hover:border-primary/50"
-                      )}
-                    >
-                      <span>{getSkillIcon(skill.name)}</span>
-                      {skill.name}
-                    </button>
-                  ))}
+                  {allSkills.slice(0, 15).map(skill => {
+                    const SkillIcon = getSkillIcon(skill.name);
+                    return (
+                      <button
+                        key={skill.name}
+                        onClick={() => toggleSkill(skill.name)}
+                        className={cn(
+                          "flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all duration-200 text-sm",
+                          selectedSkills.includes(skill.name)
+                            ? "border-primary bg-primary/10 text-primary"
+                            : "border-border hover:border-primary/50"
+                        )}
+                      >
+                        <SkillIcon className="w-3.5 h-3.5" />
+                        {skill.name}
+                      </button>
+                    );
+                  })}
                   {allSkills.length > 15 && (
                     <span className="text-sm text-muted-foreground flex items-center px-2">
                       +{allSkills.length - 15} {language === "fr" ? "autres" : "more"}
@@ -416,59 +458,90 @@ const AllSkills = () => {
               
               {/* Projects Grid */}
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProjects.map((project, index) => (
-                  <motion.div
-                    key={project.slug}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: index * 0.05 }}
-                    onClick={() => toggleProject(project.slug)}
-                    className={cn(
-                      "group relative bg-card rounded-xl border overflow-hidden cursor-pointer transition-all duration-300",
-                      "hover:border-primary/50 hover:shadow-xl hover:-translate-y-1",
-                      selectedProjects.includes(project.slug) && "border-primary ring-2 ring-primary/20"
-                    )}
-                  >
-                    {/* Project Image */}
-                    <div className="aspect-video relative overflow-hidden">
-                      <img
-                        src={project.image}
-                        alt={project.title[language]}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        onError={(e) => {
-                          e.currentTarget.src = '/placeholder.svg';
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
-                    </div>
-                    
-                    {/* Project Info */}
-                    <div className="p-4">
-                      <h3 className="font-semibold text-lg text-foreground mb-3">
-                        {project.title[language]}
-                      </h3>
-                      
-                      {/* Skills list */}
-                      <div className="space-y-2">
-                        {project.skills.slice(0, 4).map(skill => (
-                          <div key={skill.name} className="flex items-center gap-2">
-                            <span className="text-sm">{getSkillIcon(skill.name)}</span>
-                            <span className="text-sm text-foreground flex-1">{skill.name}</span>
-                            <Progress value={skill.level} animated className="h-1.5 w-20" />
-                            <span className="text-xs font-mono text-muted-foreground w-8">
-                              {skill.level}%
-                            </span>
-                          </div>
-                        ))}
-                        {project.skills.length > 4 && (
-                          <p className="text-xs text-muted-foreground">
-                            +{project.skills.length - 4} {language === "fr" ? "autres compétences" : "more skills"}
-                          </p>
+                {filteredProjects.map((project, index) => {
+                  const canNavigate = hasDetailPage(project.slug);
+                  
+                  return (
+                    <motion.div
+                      key={project.slug}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: index * 0.05 }}
+                      className={cn(
+                        "group relative bg-card rounded-xl border overflow-hidden transition-all duration-300",
+                        "hover:border-primary/50 hover:shadow-xl hover:-translate-y-1",
+                        selectedProjects.includes(project.slug) && "border-primary ring-2 ring-primary/20"
+                      )}
+                    >
+                      {/* Project Image */}
+                      <div 
+                        className="aspect-video relative overflow-hidden cursor-pointer"
+                        onClick={() => toggleProject(project.slug)}
+                      >
+                        <img
+                          src={project.image}
+                          alt={project.title[language]}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          onError={(e) => {
+                            e.currentTarget.src = '/placeholder.svg';
+                          }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                        
+                        {/* View Project Link */}
+                        {canNavigate && (
+                          <Link
+                            to={`/projects/${project.slug}`}
+                            className="absolute top-3 right-3 p-2 bg-background/80 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-primary hover:text-primary-foreground"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                          </Link>
                         )}
                       </div>
-                    </div>
-                  </motion.div>
-                ))}
+                      
+                      {/* Project Info */}
+                      <div className="p-4">
+                        <div className="flex items-center justify-between mb-3">
+                          <h3 className="font-semibold text-lg text-foreground">
+                            {project.title[language]}
+                          </h3>
+                          {canNavigate && (
+                            <Link
+                              to={`/projects/${project.slug}`}
+                              className="text-xs text-primary hover:underline flex items-center gap-1"
+                            >
+                              {language === "fr" ? "Voir" : "View"}
+                              <ExternalLink className="w-3 h-3" />
+                            </Link>
+                          )}
+                        </div>
+                        
+                        {/* Skills list */}
+                        <div className="space-y-2">
+                          {project.skills.slice(0, 4).map(skill => {
+                            const SkillIcon = getSkillIcon(skill.name);
+                            return (
+                              <div key={skill.name} className="flex items-center gap-2">
+                                <SkillIcon className="w-4 h-4 text-primary" />
+                                <span className="text-sm text-foreground flex-1">{skill.name}</span>
+                                <Progress value={skill.level} animated className="h-1.5 w-20" />
+                                <span className="text-xs font-mono text-muted-foreground w-8">
+                                  {skill.level}%
+                                </span>
+                              </div>
+                            );
+                          })}
+                          {project.skills.length > 4 && (
+                            <p className="text-xs text-muted-foreground">
+                              +{project.skills.length - 4} {language === "fr" ? "autres compétences" : "more skills"}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </motion.section>
