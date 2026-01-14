@@ -8,6 +8,9 @@ import ProjectSkillsCard from "@/components/ProjectSkillsCard";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { competencyGroups, CompetencyGroup } from "@/data/competencyGroups";
 import { motion, AnimatePresence } from "framer-motion";
+import { BarChart3, X } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import {
   RadarChart,
   PolarGrid,
@@ -16,6 +19,7 @@ import {
   Radar,
   ResponsiveContainer,
   Tooltip,
+  Legend,
 } from "recharts";
 
 const calculateGroupAverage = (group: CompetencyGroup): number => {
@@ -25,9 +29,20 @@ const calculateGroupAverage = (group: CompetencyGroup): number => {
   return Math.round(total / allSkills.length);
 };
 
+// Colors for comparison mode
+const COMPARISON_COLORS = [
+  "hsl(var(--primary))",
+  "hsl(142, 76%, 45%)", // green
+  "hsl(217, 91%, 60%)", // blue
+  "hsl(280, 65%, 60%)", // purple
+  "hsl(38, 92%, 50%)",  // orange
+];
+
 const Skills = () => {
   const { t, language } = useLanguage();
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
+  const [comparisonMode, setComparisonMode] = useState(false);
+  const [selectedProjects, setSelectedProjects] = useState<string[]>([]);
 
   const selectedGroup = competencyGroups.find((g) => g.id === activeGroup);
 
@@ -36,7 +51,49 @@ const Skills = () => {
     (g) => ["concevoir", "verifier", "maintenir", "implanter"].includes(g.id)
   );
 
-  // Prepare radar chart data
+  // Get all unique projects from university competencies
+  const allProjects = useMemo(() => {
+    const projectMap = new Map<string, { slug: string; title: { fr: string; en: string }; image: string }>();
+    universityCompetencies.forEach((group) => {
+      group.projects.forEach((project) => {
+        if (!projectMap.has(project.slug)) {
+          projectMap.set(project.slug, {
+            slug: project.slug,
+            title: project.title,
+            image: project.image,
+          });
+        }
+      });
+    });
+    return Array.from(projectMap.values());
+  }, []);
+
+  // Calculate project score per competency group
+  const getProjectScoreForGroup = (projectSlug: string, groupId: string): number => {
+    const group = universityCompetencies.find((g) => g.id === groupId);
+    if (!group) return 0;
+    const project = group.projects.find((p) => p.slug === projectSlug);
+    if (!project) return 0;
+    const avgSkill = project.skills.reduce((sum, s) => sum + s.level, 0) / project.skills.length;
+    return Math.round(avgSkill);
+  };
+
+  // Prepare radar chart data for comparison mode
+  const comparisonRadarData = useMemo(() => {
+    if (!comparisonMode || selectedProjects.length === 0) return [];
+    
+    return universityCompetencies.map((group) => {
+      const dataPoint: Record<string, string | number> = {
+        competency: group.title[language],
+      };
+      selectedProjects.forEach((slug) => {
+        dataPoint[slug] = getProjectScoreForGroup(slug, group.id);
+      });
+      return dataPoint;
+    });
+  }, [comparisonMode, selectedProjects, language]);
+
+  // Prepare radar chart data for global view
   const radarData = useMemo(() => {
     return universityCompetencies.map((group) => ({
       competency: group.title[language],
@@ -44,6 +101,17 @@ const Skills = () => {
       fullMark: 100,
     }));
   }, [language]);
+
+  // Toggle project selection
+  const toggleProjectSelection = (slug: string) => {
+    setSelectedProjects((prev) =>
+      prev.includes(slug)
+        ? prev.filter((s) => s !== slug)
+        : prev.length < 5
+        ? [...prev, slug]
+        : prev
+    );
+  };
 
   // Group projects by level
   const getProjectsByLevel = (group: CompetencyGroup) => {
@@ -84,16 +152,85 @@ const Skills = () => {
               transition={{ duration: 0.5 }}
               className="lg:col-span-1 bg-card border border-border rounded-xl p-6"
             >
-              <h3 className="font-sans text-lg font-semibold text-foreground mb-4 text-center">
-                {language === "fr" ? "Vue globale" : "Global Overview"}
-              </h3>
+              {/* Mode Toggle */}
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="font-sans text-lg font-semibold text-foreground">
+                  {comparisonMode
+                    ? language === "fr"
+                      ? "Comparaison"
+                      : "Comparison"
+                    : language === "fr"
+                    ? "Vue globale"
+                    : "Global Overview"}
+                </h3>
+                <Button
+                  variant={comparisonMode ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => {
+                    setComparisonMode(!comparisonMode);
+                    if (!comparisonMode) setSelectedProjects([]);
+                  }}
+                  className="gap-2"
+                >
+                  <BarChart3 className="w-4 h-4" />
+                  {language === "fr" ? "Comparer" : "Compare"}
+                </Button>
+              </div>
+
+              {/* Project Selection for Comparison */}
+              <AnimatePresence>
+                {comparisonMode && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    className="mb-4 overflow-hidden"
+                  >
+                    <p className="text-xs text-muted-foreground mb-2">
+                      {language === "fr"
+                        ? "Sélectionnez jusqu'à 5 projets à comparer :"
+                        : "Select up to 5 projects to compare:"}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5 max-h-32 overflow-y-auto">
+                      {allProjects.map((project, index) => {
+                        const isSelected = selectedProjects.includes(project.slug);
+                        const colorIndex = selectedProjects.indexOf(project.slug);
+                        return (
+                          <Badge
+                            key={project.slug}
+                            variant={isSelected ? "default" : "outline"}
+                            className="cursor-pointer text-xs transition-all hover:scale-105"
+                            style={
+                              isSelected
+                                ? {
+                                    backgroundColor: COMPARISON_COLORS[colorIndex],
+                                    borderColor: COMPARISON_COLORS[colorIndex],
+                                  }
+                                : {}
+                            }
+                            onClick={() => toggleProjectSelection(project.slug)}
+                          >
+                            {project.title[language]}
+                            {isSelected && <X className="w-3 h-3 ml-1" />}
+                          </Badge>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* Radar Chart */}
               <div className="w-full aspect-square max-w-[300px] mx-auto">
                 <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart data={radarData} margin={{ top: 20, right: 30, bottom: 20, left: 30 }}>
+                  <RadarChart
+                    data={comparisonMode && selectedProjects.length > 0 ? comparisonRadarData : radarData}
+                    margin={{ top: 20, right: 30, bottom: 20, left: 30 }}
+                  >
                     <PolarGrid stroke="hsl(var(--border))" />
                     <PolarAngleAxis
                       dataKey="competency"
-                      tick={{ fill: "hsl(var(--foreground))", fontSize: 11 }}
+                      tick={{ fill: "hsl(var(--foreground))", fontSize: 10 }}
                       tickLine={false}
                     />
                     <PolarRadiusAxis
@@ -109,21 +246,55 @@ const Skills = () => {
                         borderRadius: "8px",
                         color: "hsl(var(--foreground))",
                       }}
-                      formatter={(value: number) => [`${value}%`, language === "fr" ? "Moyenne" : "Average"]}
+                      formatter={(value: number, name: string) => {
+                        const projectName = allProjects.find((p) => p.slug === name)?.title[language] || name;
+                        return [`${value}%`, projectName];
+                      }}
                     />
-                    <Radar
-                      name={language === "fr" ? "Compétences" : "Skills"}
-                      dataKey="value"
-                      stroke="hsl(var(--primary))"
-                      fill="hsl(var(--primary))"
-                      fillOpacity={0.3}
-                      strokeWidth={2}
-                    />
+                    {comparisonMode && selectedProjects.length > 0 ? (
+                      selectedProjects.map((slug, index) => (
+                        <Radar
+                          key={slug}
+                          name={slug}
+                          dataKey={slug}
+                          stroke={COMPARISON_COLORS[index]}
+                          fill={COMPARISON_COLORS[index]}
+                          fillOpacity={0.15}
+                          strokeWidth={2}
+                        />
+                      ))
+                    ) : (
+                      <Radar
+                        name={language === "fr" ? "Compétences" : "Skills"}
+                        dataKey="value"
+                        stroke="hsl(var(--primary))"
+                        fill="hsl(var(--primary))"
+                        fillOpacity={0.3}
+                        strokeWidth={2}
+                      />
+                    )}
+                    {comparisonMode && selectedProjects.length > 1 && (
+                      <Legend
+                        formatter={(value: string) =>
+                          allProjects.find((p) => p.slug === value)?.title[language] || value
+                        }
+                        wrapperStyle={{ fontSize: "10px" }}
+                      />
+                    )}
                   </RadarChart>
                 </ResponsiveContainer>
               </div>
+
               <p className="text-xs text-muted-foreground text-center mt-4">
-                {language === "fr"
+                {comparisonMode
+                  ? selectedProjects.length === 0
+                    ? language === "fr"
+                      ? "Sélectionnez des projets ci-dessus"
+                      : "Select projects above"
+                    : language === "fr"
+                    ? `${selectedProjects.length} projet(s) comparé(s)`
+                    : `${selectedProjects.length} project(s) compared`
+                  : language === "fr"
                   ? "Moyennes des 4 compétences universitaires"
                   : "Averages of 4 university competencies"}
               </p>
