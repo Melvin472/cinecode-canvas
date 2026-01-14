@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Navigation from "@/components/Navigation";
 import SectionTitle from "@/components/SectionTitle";
 import FilmStrip from "@/components/FilmStrip";
@@ -8,6 +8,15 @@ import ProjectSkillsCard from "@/components/ProjectSkillsCard";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { competencyGroups, CompetencyGroup } from "@/data/competencyGroups";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  RadarChart,
+  PolarGrid,
+  PolarAngleAxis,
+  PolarRadiusAxis,
+  Radar,
+  ResponsiveContainer,
+  Tooltip,
+} from "recharts";
 
 const calculateGroupAverage = (group: CompetencyGroup): number => {
   const allSkills = group.projects.flatMap((p) => p.skills);
@@ -21,6 +30,20 @@ const Skills = () => {
   const [activeGroup, setActiveGroup] = useState<string | null>(null);
 
   const selectedGroup = competencyGroups.find((g) => g.id === activeGroup);
+
+  // Filter only the 4 university competencies for radar chart
+  const universityCompetencies = competencyGroups.filter(
+    (g) => ["concevoir", "verifier", "maintenir", "implanter"].includes(g.id)
+  );
+
+  // Prepare radar chart data
+  const radarData = useMemo(() => {
+    return universityCompetencies.map((group) => ({
+      competency: group.title[language],
+      value: calculateGroupAverage(group),
+      fullMark: 100,
+    }));
+  }, [language]);
 
   // Group projects by level
   const getProjectsByLevel = (group: CompetencyGroup) => {
@@ -50,37 +73,91 @@ const Skills = () => {
         </div>
       </section>
 
-      {/* Competency Groups */}
+      {/* Radar Chart & Competency Groups */}
       <section className="py-16">
         <div className="container mx-auto px-6">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {competencyGroups.map((group, index) => {
-              const isPalettesCreatives = group.id === "palettes-creatives";
-              const isTechSoftSkills = group.projects.some(p => p.slug === "competences-globales");
-              const shouldLinkToAllSkills = isPalettesCreatives;
-              
-              return (
-                <div
-                  key={group.id}
-                  className="animate-fade-up"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <CompetencyGroupCard
-                    title={group.title[language]}
-                    description={group.description[language]}
-                    icon={group.icon}
-                    color={group.color}
-                    isActive={activeGroup === group.id}
-                    averageLevel={calculateGroupAverage(group)}
-                    groupId={group.id}
-                    linkToAllSkills={shouldLinkToAllSkills}
-                    onClick={() =>
-                      setActiveGroup(activeGroup === group.id ? null : group.id)
-                    }
-                  />
-                </div>
-              );
-            })}
+          <div className="grid lg:grid-cols-3 gap-8 items-start">
+            {/* Radar Chart */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="lg:col-span-1 bg-card border border-border rounded-xl p-6"
+            >
+              <h3 className="font-sans text-lg font-semibold text-foreground mb-4 text-center">
+                {language === "fr" ? "Vue globale" : "Global Overview"}
+              </h3>
+              <div className="w-full aspect-square max-w-[300px] mx-auto">
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadarChart data={radarData} margin={{ top: 20, right: 30, bottom: 20, left: 30 }}>
+                    <PolarGrid stroke="hsl(var(--border))" />
+                    <PolarAngleAxis
+                      dataKey="competency"
+                      tick={{ fill: "hsl(var(--foreground))", fontSize: 11 }}
+                      tickLine={false}
+                    />
+                    <PolarRadiusAxis
+                      angle={30}
+                      domain={[0, 100]}
+                      tick={{ fill: "hsl(var(--muted-foreground))", fontSize: 10 }}
+                      tickCount={5}
+                    />
+                    <Tooltip
+                      contentStyle={{
+                        backgroundColor: "hsl(var(--card))",
+                        border: "1px solid hsl(var(--border))",
+                        borderRadius: "8px",
+                        color: "hsl(var(--foreground))",
+                      }}
+                      formatter={(value: number) => [`${value}%`, language === "fr" ? "Moyenne" : "Average"]}
+                    />
+                    <Radar
+                      name={language === "fr" ? "Compétences" : "Skills"}
+                      dataKey="value"
+                      stroke="hsl(var(--primary))"
+                      fill="hsl(var(--primary))"
+                      fillOpacity={0.3}
+                      strokeWidth={2}
+                    />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
+              <p className="text-xs text-muted-foreground text-center mt-4">
+                {language === "fr"
+                  ? "Moyennes des 4 compétences universitaires"
+                  : "Averages of 4 university competencies"}
+              </p>
+            </motion.div>
+
+            {/* Competency Group Cards */}
+            <div className="lg:col-span-2 grid sm:grid-cols-2 gap-4">
+              {competencyGroups.map((group, index) => {
+                const isPalettesCreatives = group.id === "palettes-creatives";
+                const shouldLinkToAllSkills = isPalettesCreatives;
+
+                return (
+                  <div
+                    key={group.id}
+                    className="animate-fade-up"
+                    style={{ animationDelay: `${index * 100}ms` }}
+                  >
+                    <CompetencyGroupCard
+                      title={group.title[language]}
+                      description={group.description[language]}
+                      icon={group.icon}
+                      color={group.color}
+                      isActive={activeGroup === group.id}
+                      averageLevel={calculateGroupAverage(group)}
+                      groupId={group.id}
+                      linkToAllSkills={shouldLinkToAllSkills}
+                      onClick={() =>
+                        setActiveGroup(activeGroup === group.id ? null : group.id)
+                      }
+                    />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
