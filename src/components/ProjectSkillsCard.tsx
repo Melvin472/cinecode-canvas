@@ -3,6 +3,8 @@ import { Progress } from "@/components/ui/progress";
 import { ExternalLink } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 
+import { LucideIcon } from "lucide-react";
+
 interface Skill {
   name: string;
   level: number;
@@ -14,6 +16,12 @@ interface ProjectSkillsCardProps {
   image: string;
   skills: Skill[];
   justification?: string;
+  competencyGroup?: {
+    title: string;
+    icon: LucideIcon;
+    color: string;
+    levelLabel: string;
+  };
 }
 
 const ProjectSkillsCard = ({
@@ -22,6 +30,7 @@ const ProjectSkillsCard = ({
   image,
   skills,
   justification,
+  competencyGroup,
 }: ProjectSkillsCardProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
@@ -65,6 +74,23 @@ const ProjectSkillsCard = ({
           </div>
         </div>
       </Link>
+
+      {/* Competency Badge */}
+      {competencyGroup && (
+        <div className="px-4 pt-4">
+          <div className="flex items-center gap-2 p-2 bg-secondary/50 rounded-lg border border-border">
+            <competencyGroup.icon className={`w-4 h-4 ${competencyGroup.color} flex-shrink-0`} />
+            <div className="min-w-0">
+              <span className={`font-semibold text-sm ${competencyGroup.color}`}>
+                {competencyGroup.title}
+              </span>
+              <p className="text-xs text-muted-foreground truncate">
+                {competencyGroup.levelLabel}
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Skills */}
       <div className="p-4 space-y-3">

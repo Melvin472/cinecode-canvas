@@ -150,6 +150,12 @@ const Skills = () => {
                                 image={project.image}
                                 skills={project.skills}
                                 justification={project.justification[language]}
+                                competencyGroup={{
+                                  title: selectedGroup.title[language],
+                                  icon: selectedGroup.icon,
+                                  color: selectedGroup.color,
+                                  levelLabel: selectedGroup.levelLabels[language][project.level - 1],
+                                }}
                               />
                             </motion.div>
                           ))}
