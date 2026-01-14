@@ -1,11 +1,12 @@
 import { useParams, Link, Navigate } from "react-router-dom";
-import { ArrowLeft, Github, ExternalLink, Calendar, User, Tag } from "lucide-react";
+import { ArrowLeft, Github, ExternalLink, Calendar, User, Tag, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import FilmStrip from "@/components/FilmStrip";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { getProjectBySlug } from "@/data/projects";
+import { competencyGroups } from "@/data/competencyGroups";
 
 const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -23,6 +24,21 @@ const ProjectDetail = () => {
   const tags = project.tags[language];
   const features = project.features[language];
   const role = project.role[language];
+
+  // Find all competency groups this project belongs to
+  const projectCompetencies = competencyGroups
+    .filter(group => group.projects.some(p => p.slug === slug))
+    .map(group => {
+      const projectInGroup = group.projects.find(p => p.slug === slug)!;
+      return {
+        id: group.id,
+        title: group.title[language],
+        icon: group.icon,
+        color: group.color,
+        level: projectInGroup.level,
+        levelLabel: group.levelLabels[language][projectInGroup.level - 1],
+      };
+    });
 
   return (
     <div className="min-h-screen bg-background">
@@ -96,6 +112,37 @@ const ProjectDetail = () => {
                   </span>
                 ))}
               </div>
+
+              {/* University Competencies */}
+              {projectCompetencies.length > 0 && (
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2 text-muted-foreground">
+                    <GraduationCap className="w-4 h-4" />
+                    <span className="font-mono text-sm">
+                      {language === "fr" ? "Compétences universitaires" : "University competencies"}
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {projectCompetencies.map((comp) => (
+                      <Link
+                        key={comp.id}
+                        to="/skills"
+                        className="group flex items-center gap-2 px-3 py-2 rounded-lg bg-secondary border border-border hover:border-primary/50 transition-all duration-300"
+                      >
+                        <comp.icon className={`w-4 h-4 ${comp.color} flex-shrink-0`} />
+                        <div className="text-left">
+                          <span className={`font-semibold text-sm ${comp.color} group-hover:brightness-110 transition-all`}>
+                            {comp.title}
+                          </span>
+                          <p className="text-xs text-muted-foreground line-clamp-1 max-w-[200px]">
+                            {language === "fr" ? `Niveau ${comp.level}` : `Level ${comp.level}`}
+                          </p>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Actions */}
               <div className="flex gap-4">
