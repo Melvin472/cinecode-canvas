@@ -20,20 +20,76 @@ const calculateGroupAverage = (group: CompetencyGroup): number => {
 // Explanations for each competency group self-evaluation
 const competencyExplanations: Record<string, { fr: string; en: string }> = {
   concevoir: {
-    fr: "Ce pourcentage reflète ma capacité à refaire en autonomie les projets universitaires liés à cette compétence. La conception est au cœur de ma démarche créative : du game design aux schémas électroniques, j'ai développé une capacité à visualiser des solutions avant leur réalisation. Mon stage chez Prolexia m'a particulièrement permis de structurer ma réflexion et d'adopter une approche méthodique. Cependant, je ne suis pas à 100% car je dois encore progresser sur la formalisation de mes conceptions (diagrammes UML, documentation technique structurée) et approfondir mes connaissances en architecture logicielle pour des systèmes plus complexes.",
-    en: "This percentage reflects my ability to independently redo the university projects related to this competency. Design is at the heart of my creative approach: from game design to electronic schematics, I've developed an ability to visualize solutions before implementation. My internship at Prolexia particularly helped me structure my thinking and adopt a methodical approach. However, I'm not at 100% because I still need to improve on formalizing my designs (UML diagrams, structured technical documentation) and deepen my knowledge of software architecture for more complex systems.",
+    fr: `Ce pourcentage reflète ma capacité à refaire seul les projets universitaires de cette compétence.
+
+📌 Ce que je maîtrise : Je sais imaginer et structurer des solutions avant de les coder (game design, schémas électroniques). Mon stage Prolexia m'a appris à organiser mes idées méthodiquement.
+
+🎯 Ce que je dois améliorer :
+• Mieux dessiner mes idées avec des schémas clairs (type UML)
+• Écrire une documentation technique plus complète
+• Apprendre à concevoir des projets plus gros et complexes`,
+    en: `This percentage reflects my ability to independently redo university projects in this competency.
+
+📌 What I master: I can imagine and structure solutions before coding them (game design, electronic schematics). My Prolexia internship taught me to organize my ideas methodically.
+
+🎯 What I need to improve:
+• Better visualize my ideas with clear diagrams (like UML)
+• Write more complete technical documentation
+• Learn to design bigger and more complex projects`,
   },
   verifier: {
-    fr: "Ce pourcentage traduit ma confiance à reproduire en autonomie les démarches de vérification des projets universitaires. J'ai construit cette compétence projet après projet, passant de tests basiques à des méthodologies plus rigoureuses. Les algorithmes PID du robot autonome et les tests de communication Bluetooth m'ont appris l'importance d'une validation systématique. Ce qui me manque pour atteindre 100% : maîtriser les outils de tests automatisés (CI/CD), approfondir les tests de non-régression, et développer une expertise en tests de charge et de performance.",
-    en: "This percentage reflects my confidence in independently reproducing the verification processes from university projects. I built this skill project by project, moving from basic tests to more rigorous methodologies. The PID algorithms of the autonomous robot and Bluetooth communication tests taught me the importance of systematic validation. What I need to reach 100%: mastering automated testing tools (CI/CD), deepening regression testing, and developing expertise in load and performance testing.",
+    fr: `Ce pourcentage traduit ma confiance à reproduire seul les tests des projets universitaires.
+
+📌 Ce que je maîtrise : J'ai appris à tester progressivement, des tests simples aux méthodes plus rigoureuses. Le robot autonome et le projet Bluetooth m'ont montré l'importance de tout vérifier.
+
+🎯 Ce que je dois améliorer :
+• Automatiser mes tests (faire tourner les tests tout seul)
+• Vérifier que les nouvelles fonctionnalités ne cassent pas les anciennes
+• Tester la résistance de mes applications sous forte charge`,
+    en: `This percentage reflects my confidence in independently reproducing tests from university projects.
+
+📌 What I master: I learned to test progressively, from simple tests to more rigorous methods. The autonomous robot and Bluetooth project showed me the importance of verifying everything.
+
+🎯 What I need to improve:
+• Automate my tests (run tests automatically)
+• Check that new features don't break old ones
+• Test my applications' resistance under heavy load`,
   },
   maintenir: {
-    fr: "Ce pourcentage représente ma capacité à reprendre et maintenir en autonomie les projets universitaires de cette compétence. Avec Bee's Hive et Beatmoji, j'ai appris à gérer des bases de code évolutives, à refactorer intelligemment et à documenter. Le version control est devenu un réflexe. Pour progresser vers 100%, je dois améliorer ma rigueur dans la documentation continue, maîtriser les stratégies de gestion de dette technique, et développer des compétences en monitoring et logging pour anticiper les problèmes en production.",
-    en: "This percentage represents my ability to independently take over and maintain the university projects in this competency. With Bee's Hive and Beatmoji, I learned to manage evolving codebases, refactor intelligently, and document. Version control has become a reflex. To progress toward 100%, I need to improve my consistency in continuous documentation, master technical debt management strategies, and develop skills in monitoring and logging to anticipate production issues.",
+    fr: `Ce pourcentage représente ma capacité à reprendre et faire évoluer seul les projets universitaires.
+
+📌 Ce que je maîtrise : Avec Bee's Hive et Beatmoji, j'ai appris à faire grandir un projet, à améliorer le code existant et à documenter. Git est devenu un réflexe.
+
+🎯 Ce que je dois améliorer :
+• Documenter régulièrement, pas juste à la fin
+• Mieux gérer le code "à nettoyer plus tard" (dette technique)
+• Ajouter des outils pour surveiller l'état de mes applications`,
+    en: `This percentage represents my ability to independently maintain and evolve university projects.
+
+📌 What I master: With Bee's Hive and Beatmoji, I learned to grow a project, improve existing code, and document. Git has become a reflex.
+
+🎯 What I need to improve:
+• Document regularly, not just at the end
+• Better manage "clean up later" code (technical debt)
+• Add tools to monitor my applications' health`,
   },
   implanter: {
-    fr: "Ce pourcentage reflète ma confiance à réimplanter en autonomie les solutions des projets universitaires. L'implantation est le pont entre la théorie et la pratique : mes projets m'ont confronté à la réalité du terrain avec des capteurs imprévus, des protocoles à débugger, des interfaces à adapter. Le projet Bluetooth et mon stage Prolexia m'ont formé à interagir avec différents acteurs. Ce qui me manque pour 100% : approfondir la gestion des environnements de déploiement complexes, maîtriser le déploiement conteneurisé (Docker, Kubernetes), et renforcer mes compétences en intégration de systèmes hétérogènes.",
-    en: "This percentage reflects my confidence in independently re-implementing the solutions from university projects. Implementation is the bridge between theory and practice: my projects confronted me with field reality - unexpected sensors, protocols to debug, interfaces to adapt. The Bluetooth project and my Prolexia internship trained me to interact with different stakeholders. What I need for 100%: deepening management of complex deployment environments, mastering containerized deployment (Docker, Kubernetes), and strengthening my skills in heterogeneous system integration.",
+    fr: `Ce pourcentage reflète ma confiance à réimplanter seul les solutions des projets universitaires.
+
+📌 Ce que je maîtrise : Je sais passer de la théorie à la pratique, gérer les imprévus (capteurs, bugs, interfaces). Mon stage Prolexia m'a appris à collaborer avec différentes équipes.
+
+🎯 Ce que je dois améliorer :
+• Mieux gérer les environnements de déploiement complexes
+• Apprendre Docker et Kubernetes (outils pour déployer facilement)
+• Savoir connecter des systèmes très différents entre eux`,
+    en: `This percentage reflects my confidence in independently re-implementing solutions from university projects.
+
+📌 What I master: I can move from theory to practice, handle unexpected issues (sensors, bugs, interfaces). My Prolexia internship taught me to collaborate with different teams.
+
+🎯 What I need to improve:
+• Better manage complex deployment environments
+• Learn Docker and Kubernetes (tools for easy deployment)
+• Know how to connect very different systems together`,
   },
 };
 
