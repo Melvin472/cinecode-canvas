@@ -75,6 +75,88 @@ export const projects: Project[] = [
     },
   },
   {
+    slug: "interface-films-monnaieservices",
+    title: {
+      fr: "Stage - Interface de Gestion de Films",
+      en: "Internship - Movie Management Interface",
+    },
+    description: {
+      fr: "Développement Front-End d'une Single Page Application (SPA) pour la gestion d'une base de données de films (stage chez Monnaie Services).",
+      en: "Front-End development of a Single Page Application (SPA) for movie database management (internship at Monnaie Services).",
+    },
+    longDescription: {
+      fr: "Ce premier projet réalisé lors de mon stage chez Monnaie Services consistait à concevoir de A à Z le Front-End d'une application métier destinée aux distributeurs de films. J'ai développé une Single Page Application robuste gérant d'importants volumes de données via des appels API REST asynchrones. L'interface intègre un système ingénieux de brouillon local (mise à jour différentielle) limitant la charge serveur, ainsi que des modules interactifs pour le téléversement d'affiches.",
+      en: "This first project completed during my internship at Monnaie Services involved designing from scratch the Front-End of a business application for film distributors. I developed a robust Single Page Application handling massive amounts of data via asynchronous REST API calls. The interface integrates an ingenious local draft system (differential update) limiting server load, as well as interactive modules for poster uploads.",
+    },
+    image: "/image/monnaie-services-1.png",
+    tags: {
+      fr: ["JavaScript", "jQuery", "API REST", "Front-End", "UI/UX"],
+      en: ["JavaScript", "jQuery", "REST API", "Front-End", "UI/UX"],
+    },
+    features: {
+      fr: [
+        "Architecture Single Page Application (SPA)",
+        "Requêtes asynchrones et communication API REST",
+        "Système de sauvegarde partielle (brouillon local)",
+        "Manipulation avancée du DOM avec jQuery",
+        "Gestion asynchrone des médias (FileReader)",
+      ],
+      en: [
+        "Single Page Application (SPA) architecture",
+        "Asynchronous requests and REST API communication",
+        "Partial save system (local draft)",
+        "Advanced DOM manipulation with jQuery",
+        "Asynchronous media handling (FileReader)",
+      ],
+    },
+    year: "2026",
+    role: {
+      fr: "Développeur Web Front-End",
+      en: "Front-End Web Developer",
+    },
+  },
+  {
+    slug: "imscine-modules-clients",
+    title: {
+      fr: "Stage - Modules Clients imsCiné",
+      en: "Internship - imsCiné Client Modules",
+    },
+    description: {
+      fr: "Développement des interfaces pour le logiciel de caisse imsCiné. Adaptation stricte aux écrans tactiles industriels et traitement de données massives.",
+      en: "Interface development for the imsCiné POS software. Strict adaptation to industrial touch screens and massive data processing.",
+    },
+    longDescription: {
+      fr: "Dans le cadre de ma deuxième mission chez Monnaie Services, j'ai été intégré au développement du cœur du logiciel de caisse imsCiné. J'ai conçu et intégré les modules Contacts, Offres, CSE, Utilisateurs et Groupes. Le principal défi a été d'adapter des interfaces complexes aux écrans tactiles industriels limités à une résolution de 1024x768. J'ai utilisé Tabulator pour la gestion des tableaux de données, implémenté des validations préventives côté client pour prévenir les erreurs de saisie, et optimisé le chargement des ressources (Promise.all).",
+      en: "As part of my second mission at Monnaie Services, I was integrated into the development of the core imsCiné POS software. I designed and integrated the Contacts, Offers, CSE, Users, and Groups modules. The main challenge was adapting complex interfaces to industrial touch screens limited to a 1024x768 resolution. I used Tabulator for data table management, implemented preventive client-side validations to prevent input errors, and optimized resource loading (Promise.all).",
+    },
+    image: "/image/imscine.png",
+    tags: {
+      fr: ["JavaScript", "Responsive", "Tabulator", "CSS", "Performances"],
+      en: ["JavaScript", "Responsive", "Tabulator", "CSS", "Performance"],
+    },
+    features: {
+      fr: [
+        "Design adaptatif pour écrans tactiles (1024x768)",
+        "Tableaux de données interactifs (Tabulator)",
+        "Validation algorithmique préventive côté client",
+        "Chargement asynchrone parallélisé (Promise.all)",
+        "Édition en temps réel des données (Inline Editing)",
+      ],
+      en: [
+        "Responsive design for 1024x768 touch screens",
+        "Interactive data tables (Tabulator)",
+        "Preventive client-side algorithmic validation",
+        "Parallelized asynchronous loading (Promise.all)",
+        "Real-time data editing (Inline Editing)",
+      ],
+    },
+    year: "2026",
+    role: {
+      fr: "Développeur Web Front-End",
+      en: "Front-End Web Developer",
+    },
+  },
+  {
     slug: "prolexia-oscar",
     title: {
       fr: "Stage Prolexia - Robot Oscar",
@@ -200,87 +282,81 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: "jeu-unreal-engine",
+    slug: "godot-game-jam",
     title: {
-      fr: "Jeu Vidéo - Unreal Engine",
-      en: "Video Game - Unreal Engine",
+      fr: "Very Serious Game Jam - Godot",
+      en: "Very Serious Game Jam - Godot",
     },
     description: {
-      fr: "Développement d'un jeu vidéo immersif sous Unreal Engine. Conception de gameplay, mécaniques de combat et environnement 3D détaillé.",
-      en: "Development of an immersive video game in Unreal Engine. Gameplay design, combat mechanics and detailed 3D environment.",
+      fr: "Jeu développé en solo en 1 semaine pour la Very Serious Game Jam de Juniperdev. Programmation, Game Design et composition musicale.",
+      en: "Game developed solo in 1 week for Juniperdev's Very Serious Game Jam. Programming, Game Design, and music composition.",
     },
     longDescription: {
-      fr: "Ce projet personnel de développement de jeu vidéo sous Unreal Engine m'a permis d'explorer la création de gameplay immersif et de mécaniques de combat fluides. J'ai travaillé sur la conception d'environnements 3D détaillés, l'implémentation de systèmes d'animation complexes, et le développement de l'intelligence artificielle des ennemis. Le jeu utilise les blueprints et le C++ pour une flexibilité maximale.",
-      en: "This personal video game development project in Unreal Engine allowed me to explore creating immersive gameplay and fluid combat mechanics. I worked on designing detailed 3D environments, implementing complex animation systems, and developing enemy AI. The game uses blueprints and C++ for maximum flexibility.",
+      fr: "Dans le cadre de la Very Serious Game Jam organisée par Juniperdev, j'ai eu une semaine pour concevoir et développer un jeu vidéo de A à Z. Étant seul sur ce projet, j'ai pu toucher à tous les aspects de la création : du développement sous Godot Engine (GDScript) à la conception du Game Design, en passant par la composition de la bande-son originale. Une excellente expérience pour tester ma capacité à prototyper rapidement sous pression.",
+      en: "As part of the Very Serious Game Jam organized by Juniperdev, I had one week to design and develop a video game from scratch. Being solo on this project, I handled all aspects of creation: from development in Godot Engine (GDScript) to Game Design, and even composing the original soundtrack. A great experience to test my ability to prototype quickly under pressure.",
     },
-    image: "/image/unreal.png",
+    image: "/image/godot-jam.png",
     tags: {
-      fr: ["Unreal Engine", "C++", "3D", "Game Design"],
-      en: ["Unreal Engine", "C++", "3D", "Game Design"],
+      fr: ["Godot", "GDScript", "Game Jam", "Solo", "Musique"],
+      en: ["Godot", "GDScript", "Game Jam", "Solo", "Music"],
     },
-    githubUrl: "https://github.com/Melvin472/projet-unreal",
     features: {
       fr: [
-        "Mécaniques de combat avancées",
-        "Environnements 3D immersifs",
-        "Intelligence artificielle des ennemis",
-        "Système d'animation complexe",
-        "Blueprints et C++",
+        "Développement complet en solo en 1 semaine",
+        "Prototypage rapide de mécaniques de jeu",
+        "Composition de la musique originale",
+        "Gestion complète du projet sous contrainte de temps",
       ],
       en: [
-        "Advanced combat mechanics",
-        "Immersive 3D environments",
-        "Enemy AI",
-        "Complex animation system",
-        "Blueprints and C++",
+        "Full solo development in 1 week",
+        "Rapid game mechanics prototyping",
+        "Original music composition",
+        "Complete time-constrained project management",
       ],
     },
-    year: "2024",
+    year: "2026",
     role: {
-      fr: "Game Designer & Développeur",
-      en: "Game Designer & Developer",
+      fr: "Développeur, Game Designer & Compositeur",
+      en: "Developer, Game Designer & Composer",
     },
   },
   {
-    slug: "bees-hive",
+    slug: "projet-perso-godot",
     title: {
-      fr: "Bee's Hive - Roguelike Gestion",
-      en: "Bee's Hive - Roguelike Management",
+      fr: "Projet Perso (En cours) - Godot",
+      en: "Personal Project (WIP) - Godot",
     },
     description: {
-      fr: "Jeu vidéo développé sous Godot mêlant roguelike et gestion. Incarnez une abeille gérant sa ruche, partez en expédition pour récolter des matériaux et combattez des ennemis pour assurer la survie de votre colonie.",
-      en: "Video game developed in Godot combining roguelike and management. Play as a bee managing its hive, go on expeditions to collect materials and fight enemies to ensure your colony's survival.",
+      fr: "Jeu indépendant en cours de développement (Solo). Un hybride entre Stardew Valley et Dave the Diver mêlant gestion, agriculture et exploration.",
+      en: "Indie game currently in development (Solo). A hybrid between Stardew Valley and Dave the Diver mixing management, farming, and exploration.",
     },
     longDescription: {
-      fr: "Bee's Hive est un jeu vidéo innovant développé sous Godot qui combine les mécaniques du roguelike avec des éléments de gestion. Le joueur incarne une abeille héroïque chargée de faire prospérer sa ruche. Entre les expéditions périlleuses pour récolter des ressources et les combats contre des insectes envahisseurs, il faut également gérer la ruche, construire de nouvelles cellules et assurer la survie de la colonie.",
-      en: "Bee's Hive is an innovative video game developed in Godot that combines roguelike mechanics with management elements. The player embodies a heroic bee tasked with making their hive prosper. Between perilous expeditions to collect resources and battles against invading insects, players must also manage the hive, build new cells, and ensure the colony's survival.",
+      fr: "Animé par mon envie d'apprendre continuellement et d'expérimenter de nouvelles choses, je développe actuellement ce projet personnel en solo sur mon temps libre. C'est un jeu ambitieux sous Godot Engine qui vise à fusionner les mécaniques réconfortantes d'agriculture et de gestion relationnelle de Stardew Valley avec l'exploration et la gestion de ressources dynamiques de Dave the Diver. Ce projet me permet d'explorer des architectures de code plus complexes et de nouvelles fonctionnalités de Godot.",
+      en: "Driven by my desire to continuously learn and experiment with new things, I am currently developing this personal solo project in my free time. It's an ambitious game in Godot Engine that aims to merge the cozy farming and relationship mechanics of Stardew Valley with the exploration and dynamic resource management of Dave the Diver. This project allows me to explore more complex code architectures and new Godot features.",
     },
-    image: "/image/beeshive.png",
+    image: "/image/projet-perso-godot.png", // Pense à ajouter une image avec ce nom
     tags: {
-      fr: ["Godot", "GDScript", "Roguelike", "Gestion", "Game Design"],
-      en: ["Godot", "GDScript", "Roguelike", "Management", "Game Design"],
+      fr: ["Godot", "En cours", "Simulation", "Aventure", "Solo"],
+      en: ["Godot", "WIP", "Simulation", "Adventure", "Solo"],
     },
-    githubUrl: "https://github.com/Melvin472/insect-rogue",
     features: {
       fr: [
-        "Mécaniques roguelike procédurales",
-        "Système de gestion de ruche",
-        "Combat tactique en temps réel",
-        "Collecte et crafting de ressources",
-        "Pixel art stylisé",
+        "Mécaniques d'agriculture et de gestion (Stardew-like)",
+        "Système d'exploration et de récolte (Dave the Diver-like)",
+        "Apprentissage continu de nouvelles architectures de code",
+        "Développement intégral en solo (Game Design, Code, Assets)",
       ],
       en: [
-        "Procedural roguelike mechanics",
-        "Hive management system",
-        "Real-time tactical combat",
-        "Resource collection and crafting",
-        "Stylized pixel art",
+        "Farming and management mechanics (Stardew-like)",
+        "Exploration and gathering system (Dave the Diver-like)",
+        "Continuous learning of new code architectures",
+        "Full solo development (Game Design, Code, Assets)",
       ],
     },
-    year: "2025",
+    year: "2026",
     role: {
-      fr: "Game Designer & Développeur",
-      en: "Game Designer & Developer",
+      fr: "Développeur Solo & Créateur",
+      en: "Solo Developer & Creator",
     },
   },
   {
@@ -302,7 +378,6 @@ export const projects: Project[] = [
       fr: ["Soft Skills", "Prise de parole", "Art", "Travail d'équipe"],
       en: ["Soft Skills", "Public Speaking", "Art", "Teamwork"],
     },
-    // Pas de lien GitHub pour du théâtre, c'est logique
     features: {
       fr: [
         "Interprétation et jeu d'acteur",
@@ -324,50 +399,7 @@ export const projects: Project[] = [
       fr: "Comédien",
       en: "Actor",
     },
-  },
-  {
-    slug: "portfolio-photographie",
-    title: {
-      fr: "Portfolio Photographie",
-      en: "Photography Portfolio",
-    },
-    description: {
-      fr: "Projet artistique explorant la composition, la gestion de la lumière et la retouche photo. Mise en valeur de sujets variés à travers un objectif technique et créatif.",
-      en: "Artistic project exploring composition, light management, and photo editing. Highlighting various subjects through a technical and creative lens.",
-    },
-    longDescription: {
-      fr: "La photographie est pour moi un moyen d'allier technique et créativité. Ce projet regroupe une série de clichés où j'ai travaillé sur la maîtrise de l'exposition, la profondeur de champ et le cadrage. J'utilise également des outils de post-traitement comme Lightroom pour sublimer les couleurs et raconter une histoire à travers l'image.  C'est une compétence complémentaire à mon profil technique, démontrant mon sens du détail et de l'esthétique.",
-      en: "Photography is a way for me to combine technique and creativity. This project gathers a series of shots where I worked on mastering exposure, depth of field, and framing. I also use post-processing tools like Lightroom to enhance colors and tell a story through the image.  It is a complementary skill to my technical profile, demonstrating my eye for detail and aesthetics.",
-    },
-    image: "/image/photo_portfolio.png", // Pense à mettre ton image ici
-    tags: {
-      fr: ["Photographie", "Lightroom", "Direction Artistique", "Créativité"],
-      en: ["Photography", "Lightroom", "Art Direction", "Creativity"],
-    },
-    // Tu pourras mettre un lien vers une galerie Flickr ou Instagram si tu veux
-    liveUrl: "https://ton-lien-vers-galerie.com", 
-    features: {
-      fr: [
-        "Maîtrise de l'exposition et de la lumière",
-        "Composition et cadrage",
-        "Post-traitement (Color Grading)",
-        "Narration visuelle",
-        "Gestion technique du matériel",
-      ],
-      en: [
-        "Exposure and light mastery",
-        "Composition and framing",
-        "Post-processing (Color Grading)",
-        "Visual storytelling",
-        "Technical equipment management",
-      ],
-    },
-    year: "2024",
-    role: {
-      fr: "Photographe & Éditeur",
-      en: "Photographer & Editor",
-    },
-  },
+  }
 ];
 
 export const getProjectBySlug = (slug: string): Project | undefined => {

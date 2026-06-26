@@ -67,23 +67,42 @@ export const competencyGroups: CompetencyGroup[] = [
       ],
     },
     projects: [
-      {
-        slug: "jeu-unreal-engine",
+{
+        slug: "godot-game-jam",
         title: {
-          fr: "Jeu Vidéo - Unreal Engine",
-          en: "Video Game - Unreal Engine",
+          fr: "Very Serious Game Jam",
+          en: "Very Serious Game Jam",
         },
-        image: "/image/unreal.png",
+        image: "/image/godot-jam.png",
         level: 1,
         skills: [
-          { name: "Game Design", level: 80 },
-          { name: "Unreal Engine", level: 75 },
-          { name: "C++", level: 72 },
-          { name: "3D Environments", level: 70 },
+          { name: "Game Design", level: 85 },
+          { name: "Godot Engine", level: 85 },
+          { name: "Gestion du temps", level: 90 },
+          { name: "Composition musicale", level: 75 },
         ],
         justification: {
-          fr: "J'ai conçu les mécaniques de jeu et l'architecture du projet en suivant une démarche projet structurée. Le Game Design à 80% reflète ma capacité à créer des systèmes de gameplay cohérents, tandis que mes compétences Unreal Engine et C++ sont encore en développement.",
-          en: "I designed the game mechanics and project architecture following a structured project approach. The 80% Game Design reflects my ability to create coherent gameplay systems, while my Unreal Engine and C++ skills are still developing.",
+          fr: "Création d'un jeu de A à Z, seul en 1 semaine pour la Very Serious Game Jam de Juniperdev. Une conception express (Game Design, Code, Musique) exigeant une forte capacité d'adaptation et d'efficacité.",
+          en: "Creation of a game from scratch, alone in 1 week for Juniperdev's Very Serious Game Jam. An express design (Game Design, Code, Music) requiring high adaptability and efficiency.",
+        },
+      },
+      {
+        slug: "interface-films-monnaieservices",
+        title: {
+          fr: "Stage - Interface de Films",
+          en: "Internship - Movie Interface",
+        },
+        image: "/image/monnaie-services-1.png",
+        level: 2,
+        skills: [
+          { name: "JavaScript", level: 90 },
+          { name: "API REST", level: 85 },
+          { name: "jQuery", level: 80 },
+          { name: "UI/UX", level: 85 },
+        ],
+        justification: {
+          fr: "Ce projet m'a permis de fiabiliser mes solutions Front-End en concevant une architecture Single Page Application robuste, gérant un système de brouillon local pour optimiser les requêtes réseau (85%).",
+          en: "This project allowed me to make my Front-End solutions more reliable by designing a robust Single Page Application architecture, managing a local draft system to optimize network requests (85%).",
         },
       },
       {
@@ -233,23 +252,23 @@ export const competencyGroups: CompetencyGroup[] = [
       ],
     },
     projects: [
-      {
-        slug: "bees-hive",
+{
+        slug: "projet-perso-godot",
         title: {
-          fr: "Bee's Hive - Roguelike Gestion",
-          en: "Bee's Hive - Roguelike Management",
+          fr: "Projet Perso (En cours) - Sim/Aventure",
+          en: "Personal Project (WIP) - Sim/Adventure",
         },
-        image: "/image/beeshive.png",
+        image: "/image/projet-perso-godot.png",
         level: 1,
         skills: [
-          { name: "Godot Engine", level: 80 },
-          { name: "GDScript", level: 78 },
-          { name: "Version control", level: 85 },
-          { name: "Documentation", level: 75 },
+          { name: "Godot Engine", level: 85 },
+          { name: "Architecture logicielle", level: 80 },
+          { name: "Apprentissage continu", level: 95 },
+          { name: "Game Design", level: 80 },
         ],
         justification: {
-          fr: "J'ai intervenu sur le code existant pour corriger des bugs et ajouter des fonctionnalités. Le version control à 85% montre ma rigueur dans le suivi des modifications, tandis que la documentation à 75% reflète mon travail d'amélioration continue.",
-          en: "I intervened on existing code to fix bugs and add features. Version control at 85% shows my rigor in tracking changes, while documentation at 75% reflects my continuous improvement work.",
+          fr: "Sur ce projet solo mixant les mécaniques de Stardew Valley et Dave the Diver, je maintiens et fais évoluer une architecture de code complexe sur le long terme. C'est mon laboratoire personnel pour apprendre et tester de nouvelles choses.",
+          en: "On this solo project mixing Stardew Valley and Dave the Diver mechanics, I maintain and evolve a complex code architecture over the long term. It's my personal laboratory to learn and test new things.",
         },
       },
       {
@@ -317,6 +336,25 @@ export const competencyGroups: CompetencyGroup[] = [
         },
       },
       {
+        slug: "imscine-modules-clients",
+        title: {
+          fr: "Stage - Modules imsCiné",
+          en: "Internship - imsCiné Modules",
+        },
+        image: "/image/imscine.png",
+        level: 2,
+        skills: [
+          { name: "JavaScript", level: 90 },
+          { name: "Responsive Design", level: 85 },
+          { name: "Tabulator", level: 80 },
+          { name: "Performances", level: 88 },
+        ],
+        justification: {
+          fr: "En stage, j'ai interagi avec des contraintes matérielles strictes pour implanter des interfaces sur écrans tactiles industriels (1024x768). L'optimisation des performances (88%) et le Responsive Design (85%) ont été cruciaux.",
+          en: "During my internship, I interacted with strict hardware constraints to implement interfaces on industrial touch screens (1024x768). Performance optimization (88%) and Responsive Design (85%) were crucial.",
+        },
+      },
+      {
         slug: "prolexia-oscar",
         title: {
           fr: "Stage Prolexia - Robot Oscar",
@@ -347,8 +385,8 @@ export const competencyGroups: CompetencyGroup[] = [
       fr: "Expression technique, humaine et artistique",
       en: "Technical, human, and artistic expression",
     },
-    icon: Palette, // Icône plus adaptée
-    color: "text-red-500", // Couleur distincte
+    icon: Palette, 
+    color: "text-red-500", 
     maxLevels: 2,
     levelLabels: {
       fr: [
@@ -367,14 +405,11 @@ export const competencyGroups: CompetencyGroup[] = [
           fr: "Tech & Soft Skills",
           en: "Tech & Soft Skills",
         },
-        // Image générique représentant le code ou le travail d'équipe
         image: "/image/skills-mix.png", 
         level: 1,
         skills: [
-          // Hard Skills (Récapitulatif)
           { name: "C++ / Python", level: 90 },
           { name: "React / Web", level: 85 },
-          // Soft Skills
           { name: "Travail d'équipe", level: 100 },
           { name: "Créativité", level: 95 },
           { name: "Adaptabilité", level: 90 },
@@ -390,7 +425,6 @@ export const competencyGroups: CompetencyGroup[] = [
           fr: "Réalisation & Cinéma",
           en: "Filmmaking & Cinema",
         },
-        // C'est ici que tu mettras une image de couverture de tes tournages
         image: "/image/cinema-cover.png", 
         level: 2,
         skills: [
