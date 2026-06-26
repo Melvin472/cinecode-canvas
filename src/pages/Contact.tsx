@@ -163,8 +163,8 @@ const Contact = () => {
                   {language === "fr" ? "Mon CV" : "My Resume"}
                 </h3>
                 <a
-                  href="/documents/Melvin_Lacote_CV.pdf"
-                  download="Melvin_Lacote_CV.pdf"
+                  href="/documents/Melvin_Lacote_CV.jpg"
+                  download="Melvin_Lacote_CV.jpg"
                   className="flex items-center gap-3 p-4 rounded-lg bg-card border border-border hover:border-primary transition-colors group"
                 >
                   <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
@@ -174,7 +174,7 @@ const Contact = () => {
                     <p className="font-mono text-sm text-foreground group-hover:text-primary transition-colors">
                       {t.contact.downloadCV}
                     </p>
-                    <p className="text-xs text-muted-foreground">PDF • Melvin Lacote</p>
+                    <p className="text-xs text-muted-foreground">JPG • Melvin Lacote</p>
                   </div>
                 </a>
               </div>

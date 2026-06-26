@@ -34,6 +34,16 @@ const About = () => {
 
   const experience = [
     {
+      period: "2026",
+      title: "Stage - Monnaie Services",
+      role: language === "fr" ? "Développeur Web Front-End" : "Front-End Web Developer",
+      location: "France",
+      description: language === "fr"
+        ? "Développement d'interfaces pour le logiciel de caisse imsCiné et création d'une Single Page Application (SPA) de gestion de films. Optimisation des performances via API REST et adaptation aux écrans tactiles industriels."
+        : "Interface development for the imsCiné POS software and creation of a Single Page Application (SPA) for movie management. Performance optimization via REST API and adaptation to industrial touch screens.",
+      technologies: ["JavaScript", "jQuery", "API REST", "Tabulator", "UI/UX"],
+    },
+    {
       period: "2024",
       title: "Stage - Prolexia",
       role: language === "fr" ? "Développeur Robotique" : "Robotics Developer",
