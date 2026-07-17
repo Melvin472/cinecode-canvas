@@ -47,28 +47,40 @@ const Contact = () => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      const { data, error } = await supabase.functions.invoke("send-contact-email", {
-        body: formData,
-      });
+   try {
+  // ✅ REMPLACE L'URL CI-DESSOUS PAR TON URL FORMSPREE
+  // Exemple : "https://formspree.io/f/xdoqbekj"
+  const FORMSPREE_URL = "https://formspree.io/f/mdaqevgq"; 
 
-      if (error) throw error;
+  const response = await fetch(FORMSPREE_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify(formData),
+  });
 
-      toast({
-        title: language === "fr" ? "Message envoyé !" : "Message sent!",
-        description: language === "fr" ? "Je vous répondrai dans les plus brefs délais." : "I will get back to you as soon as possible.",
-      });
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    } catch (error: any) {
-      console.error("Error sending message:", error);
-      toast({
-        title: language === "fr" ? "Erreur" : "Error",
-        description: language === "fr" ? "Une erreur est survenue. Veuillez réessayer." : "An error occurred. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
-    }
+  if (!response.ok) {
+    throw new Error("Erreur réseau");
+  }
+
+  toast({
+    title: language === "fr" ? "Message envoyé !" : "Message sent!",
+    description: language === "fr" ? "Je vous répondrai dans les plus brefs délais." : "I will get back to you as soon as possible.",
+  });
+  setFormData({ name: "", email: "", subject: "", message: "" });
+} catch (error: any) {
+  console.error("Error sending message:", error);
+  toast({
+    title: language === "fr" ? "Erreur" : "Error",
+    description: language === "fr" ? "Une erreur est survenue lors de l'envoi. Veuillez réessayer ou m'envoyer un mail directement." : "An error occurred while sending. Please try again or email me directly.",
+    variant: "destructive",
+  });
+} finally {
+  setIsLoading(false);
+};
+
   };
 
   const handleChange = (
