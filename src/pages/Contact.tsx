@@ -175,8 +175,8 @@ const Contact = () => {
                   {language === "fr" ? "Mon CV" : "My Resume"}
                 </h3>
                 <a
-                  href="/documents/Melvin_Lacote_CV.jpg"
-                  download="Melvin_Lacote_CV.jpg"
+                  href="/documents/CV Melvin Lacote.jpg"
+                  download="CV Melvin Lacote.jpg"
                   className="flex items-center gap-3 p-4 rounded-lg bg-card border border-border hover:border-primary transition-colors group"
                 >
                   <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">

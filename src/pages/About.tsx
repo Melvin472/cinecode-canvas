@@ -11,12 +11,24 @@ const About = () => {
 
   const education = [
     {
+      period: "2026 - 2029",
+      title: language === "fr"
+        ? "Telecom Saint-Étienne - École d'ingénieurs (Alternance)"
+        : "Telecom Saint-Étienne - Engineering School (Work-Study)",
+      institution: "Telecom Saint-Étienne",
+      location: "Saint-Étienne, France",
+      description: language === "fr"
+        ? "Formation d'ingénieur en Informatique et Électronique pour le Traitement de la Données."
+        : "Engineering in Computer Science and Electronics for Data Engineering.",
+    },
+    
+    {
       period: "2022 - 2025",
       title: language === "fr" 
         ? "BUT GEII (Génie Électrique et Informatique Industrielle)"
         : "BUT GEII (Electrical and Industrial IT Engineering)",
       institution: "IUT de Toulon",
-      location: "Toulon, France",
+      location: "La Garde, France",
       description: language === "fr"
         ? "Formation en électronique, informatique industrielle, automatisme et robotique. Spécialisation en systèmes embarqués et programmation."
         : "Training in electronics, industrial computing, automation and robotics. Specialization in embedded systems and programming.",
@@ -24,7 +36,7 @@ const About = () => {
     {
       period: "2022",
       title: language === "fr" ? "Baccalauréat STI2D" : "STI2D Baccalaureate",
-      institution: "Lycée Rouvière",
+      institution: "Lycée Sainte Marie",
       location: "Toulon, France",
       description: language === "fr"
         ? "Spécialité Sciences et Technologies de l'Industrie et du Développement Durable. Option SIN (Systèmes d'Information et Numérique)."
